@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "test2.sln"
+    "dotnet.defaultSolution": "Test2.sln"
 }
