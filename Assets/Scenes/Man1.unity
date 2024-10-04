@@ -1481,11 +1481,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5880649045387332157, guid: 426be8264edb98449a546ebf75549a26, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -103.86907
+      value: -104.69
       objectReference: {fileID: 0}
     - target: {fileID: 5880649045387332157, guid: 426be8264edb98449a546ebf75549a26, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -321.95142
+      value: -326.99
       objectReference: {fileID: 0}
     - target: {fileID: 5880649045387332157, guid: 426be8264edb98449a546ebf75549a26, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7371,7 +7371,7 @@ Transform:
   m_GameObject: {fileID: 971960643}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -103.86907, y: -321.95142, z: 0}
+  m_LocalPosition: {x: -104.69, y: -326.99, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -17149,6 +17149,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1211019598}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &2119781758 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3749984956610459308, guid: 66f01b1e458e22e41a9e750ccbe73ede, type: 3}
+  m_PrefabInstance: {fileID: 1002504462267694392}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2120667434
 GameObject:
   m_ObjectHideFlags: 0
@@ -17247,11 +17252,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3749984956610459308, guid: 66f01b1e458e22e41a9e750ccbe73ede, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -102.822426
+      value: -104.26
       objectReference: {fileID: 0}
     - target: {fileID: 3749984956610459308, guid: 66f01b1e458e22e41a9e750ccbe73ede, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -325.1001
+      value: -334.33
       objectReference: {fileID: 0}
     - target: {fileID: 3749984956610459308, guid: 66f01b1e458e22e41a9e750ccbe73ede, type: 3}
       propertyPath: m_LocalPosition.z
@@ -17300,7 +17305,7 @@ PrefabInstance:
     - target: {fileID: 7688986663581153188, guid: 66f01b1e458e22e41a9e750ccbe73ede, type: 3}
       propertyPath: spawnPoints.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2119781758}
     - target: {fileID: 7688986663581153188, guid: 66f01b1e458e22e41a9e750ccbe73ede, type: 3}
       propertyPath: enemyPrefabs.Array.data[0]
       value: 
