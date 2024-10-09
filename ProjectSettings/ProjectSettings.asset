@@ -705,10 +705,10 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
-  cloudProjectId: b08d6fff-a0ec-414c-bef7-dab5c073b414
+  cloudProjectId: 2d982080-90cd-4b5b-8d64-4cc9ccaa06a1
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: test2
+  projectName: File
   organizationId: vduy
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
