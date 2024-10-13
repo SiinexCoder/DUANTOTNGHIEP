@@ -28,7 +28,7 @@ public class EnemyController : MonoBehaviour
         {
             Die();
         }
-
+    }
         void Die()
     {
         Debug.Log("Enemy Die");
@@ -43,7 +43,7 @@ public class EnemyController : MonoBehaviour
 
         Destroy(gameObject, 1f);
     }
-    }
+    
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
