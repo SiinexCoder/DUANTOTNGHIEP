@@ -3,7 +3,7 @@ guid: e1618b4c4dca1514b87e263b64ce6823
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
-  serializedVersion: 12
+  serializedVersion: 13
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -147,7 +147,133 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: spr_Blue_slime_walk_shadowless_0
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 26
+        width: 14
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb68ca0da8a4cbc4db9866851e65b748
+      internalID: -1137436227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_Blue_slime_walk_shadowless_1
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 25
+        width: 15
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89d2cdecb16b16b4ca38cecc1d03ac3f
+      internalID: 2077787710
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_Blue_slime_walk_shadowless_2
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 25
+        width: 15
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1e06498c8aa9d149888477edba15230
+      internalID: 977811944
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_Blue_slime_walk_shadowless_3
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 25
+        width: 15
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23351a5c18791f24abd2058b85149da5
+      internalID: 464271593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_Blue_slime_walk_shadowless_4
+      rect:
+        serializedVersion: 2
+        x: 281
+        y: 25
+        width: 14
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d03e12930fe151b4abf0b49ee8299a10
+      internalID: 597259581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_Blue_slime_walk_shadowless_5
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 25
+        width: 14
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ec5a7c8510f8c8418e2dbc536aca546
+      internalID: 1794521608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -158,7 +284,13 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      spr_Blue_slime_walk_shadowless_0: -1137436227
+      spr_Blue_slime_walk_shadowless_1: 2077787710
+      spr_Blue_slime_walk_shadowless_2: 977811944
+      spr_Blue_slime_walk_shadowless_3: 464271593
+      spr_Blue_slime_walk_shadowless_4: 597259581
+      spr_Blue_slime_walk_shadowless_5: 1794521608
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

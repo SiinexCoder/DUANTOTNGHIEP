@@ -3,7 +3,7 @@ guid: 7f2118a87bc86b34c931120975e7a054
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
-  serializedVersion: 12
+  serializedVersion: 13
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -147,7 +147,322 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: spr_Blue_slime_attack_shadowless_0
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 26
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8518583a4428fb548bbd89cda56bafa6
+      internalID: 1191245950
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_Blue_slime_attack_shadowless_1
+      rect:
+        serializedVersion: 2
+        x: 473
+        y: 37
+        width: 14
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8356827a6f256c488519433a5a6531f
+      internalID: 196212122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_Blue_slime_attack_shadowless_2
+      rect:
+        serializedVersion: 2
+        x: 537
+        y: 37
+        width: 14
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc97cbdadfb61f64aa9707bcaad3e884
+      internalID: -1273587343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_Blue_slime_attack_shadowless_3
+      rect:
+        serializedVersion: 2
+        x: 601
+        y: 37
+        width: 14
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44319542f6d51ab4f8ef641b264efe4e
+      internalID: -397808526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_Blue_slime_attack_shadowless_4
+      rect:
+        serializedVersion: 2
+        x: 665
+        y: 37
+        width: 14
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8fcd7a1668c7df441911c92f697da03b
+      internalID: -1140633283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_Blue_slime_attack_shadowless_5
+      rect:
+        serializedVersion: 2
+        x: 729
+        y: 37
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4338e343ea14dd46a7e8266168f7837
+      internalID: -244866832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_Blue_slime_attack_shadowless_6
+      rect:
+        serializedVersion: 2
+        x: 794
+        y: 28
+        width: 12
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c72394253b374948a459a369f16afa5
+      internalID: -2034205188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_Blue_slime_attack_shadowless_7
+      rect:
+        serializedVersion: 2
+        x: 922
+        y: 26
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 552463f31001c284a90fc6b6585a1d61
+      internalID: 1844644615
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_Blue_slime_attack_shadowless_8
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 26
+        width: 15
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2630e99cb89bd76468aa331514cf1d97
+      internalID: -1563312706
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_Blue_slime_attack_shadowless_9
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 25
+        width: 17
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2d926d4e9c68324795eb8f562989056
+      internalID: 835556048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_Blue_slime_attack_shadowless_10
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 25
+        width: 17
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d6bb137a040ac94b82898e7c90de8f8
+      internalID: -358943053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_Blue_slime_attack_shadowless_11
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 25
+        width: 17
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6edffa35655f475449e4b0e2203d9b80
+      internalID: -1243507810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_Blue_slime_attack_shadowless_12
+      rect:
+        serializedVersion: 2
+        x: 344
+        y: 25
+        width: 17
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aee582365f983604c9b92386bd24a1c2
+      internalID: 1564413584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_Blue_slime_attack_shadowless_13
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 25
+        width: 17
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18f847ad6f66b99439ce03307b9765e4
+      internalID: -1732510453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_Blue_slime_attack_shadowless_14
+      rect:
+        serializedVersion: 2
+        x: 856
+        y: 26
+        width: 17
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb4f1cd7ec6f54047a18248e01dc1062
+      internalID: -360083639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -158,7 +473,22 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      spr_Blue_slime_attack_shadowless_0: 1191245950
+      spr_Blue_slime_attack_shadowless_1: 196212122
+      spr_Blue_slime_attack_shadowless_10: -358943053
+      spr_Blue_slime_attack_shadowless_11: -1243507810
+      spr_Blue_slime_attack_shadowless_12: 1564413584
+      spr_Blue_slime_attack_shadowless_13: -1732510453
+      spr_Blue_slime_attack_shadowless_14: -360083639
+      spr_Blue_slime_attack_shadowless_2: -1273587343
+      spr_Blue_slime_attack_shadowless_3: -397808526
+      spr_Blue_slime_attack_shadowless_4: -1140633283
+      spr_Blue_slime_attack_shadowless_5: -244866832
+      spr_Blue_slime_attack_shadowless_6: -2034205188
+      spr_Blue_slime_attack_shadowless_7: 1844644615
+      spr_Blue_slime_attack_shadowless_8: -1563312706
+      spr_Blue_slime_attack_shadowless_9: 835556048
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
