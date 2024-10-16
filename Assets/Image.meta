@@ -1,10 +1,16 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 <<<<<<<< HEAD:Assets/Animation.meta
 guid: 0e63fab755814434ca65bd42bf440670
+=======
+<<<<<<<< HEAD:Assets/Scenes/Test.unity.meta
+guid: a286bb3c60387c541b9a96f22cee5d96
+>>>>>>> Ngantest
 ========
 guid: 0f48615fbdc2bd342bab3ac778b48f4f
 >>>>>>>> Dii:Assets/Image.meta
 folderAsset: yes
+>>>>>>>> origin/Dii:Assets/Image.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
