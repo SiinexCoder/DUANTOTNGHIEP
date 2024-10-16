@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ed2d6b2cc7142474f90a0ebb161584d5
+guid: 4f77ce9e9463b3b4eb31e4cc6bf69a8c
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -43,8 +43,13 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
+<<<<<<< Updated upstream:Assets/Sprites/Blue Slime/shadowless/spr_Blue_slime_hurt_shadowless.png.meta
   spriteMode: 1
   spriteExtrude: 1
+=======
+  spriteMode: 2
+  spriteExtrude: 0
+>>>>>>> Stashed changes:Assets/Animation/Slime Animation/spr_Blue_slime_hurt.png.meta
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
@@ -71,7 +76,7 @@ TextureImporter:
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: -1
+    textureFormat: 4
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -147,7 +152,95 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
+<<<<<<< Updated upstream:Assets/Sprites/Blue Slime/shadowless/spr_Blue_slime_hurt_shadowless.png.meta
     sprites: []
+=======
+    sprites:
+    - serializedVersion: 2
+      name: spr_Blue_slime_hurt_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e093f0ea6697164e9c3dbb443c3efbb
+      internalID: 1420989272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_Blue_slime_hurt_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1272224dbc9b1a2438e419ea0e7358a2
+      internalID: -1711856343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_Blue_slime_hurt_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d3e8173aee72ca45afbf360b4949d34
+      internalID: 1264174041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_Blue_slime_hurt_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13a036287c45c9a429876a57092bfca8
+      internalID: 1943400560
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+>>>>>>> Stashed changes:Assets/Animation/Slime Animation/spr_Blue_slime_hurt.png.meta
     outline: []
     physicsShape: []
     bones: []
@@ -158,7 +251,15 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+<<<<<<< Updated upstream:Assets/Sprites/Blue Slime/shadowless/spr_Blue_slime_hurt_shadowless.png.meta
     nameFileIdTable: {}
+=======
+    nameFileIdTable:
+      spr_Blue_slime_hurt_0: 1420989272
+      spr_Blue_slime_hurt_1: -1711856343
+      spr_Blue_slime_hurt_2: 1264174041
+      spr_Blue_slime_hurt_3: 1943400560
+>>>>>>> Stashed changes:Assets/Animation/Slime Animation/spr_Blue_slime_hurt.png.meta
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
