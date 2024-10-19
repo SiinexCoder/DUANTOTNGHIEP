@@ -19,8 +19,8 @@ public class Monster : MonoBehaviour
         // Tìm người chơi bằng tag
         player = GameObject.FindGameObjectWithTag("Player").transform;
 
-        // Bắt đầu coroutine để quái vật biến mất sau 5 giây
-        StartCoroutine(DisappearAfterDelay(5f));
+        // // Bắt đầu coroutine để quái vật biến mất sau 5 giây
+        // StartCoroutine(DisappearAfterDelay(5f));
     }
     
 
