@@ -64,16 +64,16 @@ public class Monster : MonoBehaviour
         transform.position += new Vector3(direction.x, direction.y, 0) * moveSpeed * Time.deltaTime;
     }
 
-    private IEnumerator DisappearAfterDelay(float delay)
-    {
-        // Chờ trong khoảng thời gian delay (5 giây)
-        yield return new WaitForSeconds(delay);
+    // private IEnumerator DisappearAfterDelay(float delay)
+    // {
+    //     // Chờ trong khoảng thời gian delay (5 giây)
+    //     yield return new WaitForSeconds(delay);
         
         
-        // Biến mất (có thể bạn muốn dùng Destroy(gameObject) hoặc tắt gameObject)
-        Destroy(gameObject); // Xóa quái vật
-        // Hoặc bạn có thể sử dụng: gameObject.SetActive(false); // Ẩn quái vật
-    }
+    //     // Biến mất (có thể bạn muốn dùng Destroy(gameObject) hoặc tắt gameObject)
+    //     Destroy(gameObject); // Xóa quái vật
+    //     // Hoặc bạn có thể sử dụng: gameObject.SetActive(false); // Ẩn quái vật
+    // }
 
     
 }

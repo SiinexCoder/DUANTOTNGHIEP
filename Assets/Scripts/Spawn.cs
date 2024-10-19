@@ -1,40 +1,38 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class MonsterSpawner : MonoBehaviour
-{ public GameObject monsterPrefab; // Prefab quái (có thể điền từ Inspector)
-    public float initialDelay = 5f; // Thời gian chờ trước khi bắt đầu spawn (có thể điền từ Inspector)
-    public float spawnInterval = 2f; // Thời gian giữa các lần spawn (có thể điền từ Inspector)
-    public int monstersPerSpawn = 2; // Số lượng quái spawn mỗi lần (có thể điền từ Inspector)
-    public int spawnLimit = 4; // Số lần spawn tối đa (có thể điền từ Inspector)
+{
+    public GameObject monsterPrefab;
+    public float initialDelay = 5f;
+    public float spawnInterval = 2f;
+    public int monstersPerSpawn = 2;
+    public int spawnLimit = 4;
 
-    // Mảng các vị trí spawn (có thể điền từ Inspector)
     public Vector3[] spawnPositions;
+
+    public float minDistanceBetweenMonsters = 2f; // Khoảng cách tối thiểu giữa các quái
+
+    // Danh sách chứa các vị trí đã spawn
+    private List<Vector3> spawnedPositions = new List<Vector3>();
 
     void Start()
     {
-        // Chờ một khoảng thời gian trước khi bắt đầu spawn quái
         StartCoroutine(StartSpawningAfterDelay());
     }
 
     private IEnumerator StartSpawningAfterDelay()
     {
-        // Chờ thời gian delay
         yield return new WaitForSeconds(initialDelay);
-
-        // Bắt đầu coroutine spawn quái
         StartCoroutine(SpawnMonsters());
     }
 
     private IEnumerator SpawnMonsters()
     {
-        // Lặp qua số lần spawn tối đa
         for (int i = 0; i < spawnLimit; i++)
         {
-            // Spawn quái theo số lượng quy định
             SpawnMonster(monstersPerSpawn);
-
-            // Chờ thời gian giữa các lần spawn
             yield return new WaitForSeconds(spawnInterval);
         }
     }
@@ -43,19 +41,47 @@ public class MonsterSpawner : MonoBehaviour
     {
         for (int i = 0; i < count; i++)
         {
-            // Kiểm tra nếu có vị trí spawn
-            if (spawnPositions.Length > 0)
+            Vector3 spawnPosition = Vector3.zero;
+            bool validPositionFound = false;
+
+            // Thử tìm vị trí hợp lệ
+            for (int attempt = 0; attempt < 10; attempt++) // Giới hạn số lần thử để tránh vòng lặp vô tận
             {
-                // Chọn vị trí ngẫu nhiên từ mảng spawnPositions
-                Vector3 spawnPosition = spawnPositions[Random.Range(0, spawnPositions.Length)];
-                Instantiate(monsterPrefab, spawnPosition, Quaternion.identity);
+                if (spawnPositions.Length > 0)
+                {
+                    spawnPosition = spawnPositions[Random.Range(0, spawnPositions.Length)];
+                }
+                else
+                {
+                    spawnPosition = new Vector3(Random.Range(-10f, 10f), 0, Random.Range(-10f, 10f));
+                }
+
+                // Kiểm tra xem vị trí mới có đè lên các vị trí đã spawn không
+                if (IsValidSpawnPosition(spawnPosition))
+                {
+                    validPositionFound = true;
+                    break;
+                }
             }
-            else
+
+            // Nếu tìm được vị trí hợp lệ, spawn quái và lưu vị trí lại
+            if (validPositionFound)
             {
-                // Nếu không có vị trí nào, spawn ở vị trí mặc định
-                Vector3 spawnPosition = new Vector3(Random.Range(-10f, 10f), 0, Random.Range(-10f, 10f));
                 Instantiate(monsterPrefab, spawnPosition, Quaternion.identity);
+                spawnedPositions.Add(spawnPosition);
             }
         }
+    }
+
+    private bool IsValidSpawnPosition(Vector3 position)
+    {
+        foreach (Vector3 spawnedPosition in spawnedPositions)
+        {
+            if (Vector3.Distance(position, spawnedPosition) < minDistanceBetweenMonsters)
+            {
+                return false; // Vị trí quá gần với quái đã spawn trước đó
+            }
+        }
+        return true; // Vị trí hợp lệ
     }
 }
