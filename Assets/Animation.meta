@@ -1,5 +1,6 @@
 fileFormatVersion: 2
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<<< HEAD:Assets/Animation.meta
 guid: 4359246d110147546beaf569f2ec5f35
 ========
@@ -14,6 +15,10 @@ guid: 4359246d110147546beaf569f2ec5f35
 folderAsset: yes
 >>>>>>>> origin/Dii:Assets/Animation.meta
 >>>>>>> Ngantest
+=======
+guid: 4359246d110147546beaf569f2ec5f35
+folderAsset: yes
+>>>>>>> origin/Ng2
 DefaultImporter:
   externalObjects: {}
   userData: 

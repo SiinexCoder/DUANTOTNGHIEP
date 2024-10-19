@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/Ng2
     public Animator animator;
 
     public Transform attackPoint;
@@ -15,17 +18,28 @@ public class PlayerAttack : MonoBehaviour
 
     public int attackDamage = 40;
 
+<<<<<<< HEAD
 
     // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
+=======
+    // Update is called once per frame
+    void Update()
+    {
+         if (Input.GetKeyDown(KeyCode.Space))
+>>>>>>> origin/Ng2
         {
             Attack();
         }
     }
 
+<<<<<<< HEAD
     void Attack()
+=======
+        void Attack()
+>>>>>>> origin/Ng2
     {
         animator.SetTrigger("Attack");
 
@@ -46,6 +60,9 @@ public class PlayerAttack : MonoBehaviour
 
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
         
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/Ng2
     }
 }

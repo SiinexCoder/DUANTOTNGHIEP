@@ -5,11 +5,15 @@ TagManager:
   serializedVersion: 2
   tags:
   - Monter
+<<<<<<< HEAD
+=======
+  - AttackPoint
+>>>>>>> origin/Ng2
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Enemies
   - Water
   - UI
   - 

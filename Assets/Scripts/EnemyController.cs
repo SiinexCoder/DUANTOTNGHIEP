@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/Ng2
     Player player;
     public int minDamage;
     public int maxDamage;
@@ -12,22 +16,40 @@ public class EnemyController : MonoBehaviour
 
     public Animator animator;
 
+<<<<<<< HEAD
     void Start(){
         currentHeath = maxHeath;
     }
 
     public void TakeDamageEnemy(int damage){
+=======
+    void Start()
+    {
+        currentHeath = maxHeath;
+    }
+
+    public void TakeDamageEnemy(int damage)
+    {
+>>>>>>> origin/Ng2
         currentHeath -= damage;
 
         animator.SetTrigger("Hurt");
 
+<<<<<<< HEAD
         if(currentHeath <= 0)
+=======
+        if (currentHeath <= 0)
+>>>>>>> origin/Ng2
         {
             Die();
         }
     }
+<<<<<<< HEAD
 
     void Die()
+=======
+        void Die()
+>>>>>>> origin/Ng2
     {
         Debug.Log("Enemy Die");
         
@@ -37,10 +59,18 @@ public class EnemyController : MonoBehaviour
 
         GetComponent<Collider2D>().enabled = false;
 
+<<<<<<< HEAD
         GetComponent<LootBag>().InstantiateLoot(transform.position);
 
         Destroy(gameObject, 1f);
     }
+=======
+        // GetComponent<LootBag>().InstantiateLoot(transform.position);
+
+        Destroy(gameObject, 1f);
+    }
+    
+>>>>>>> origin/Ng2
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
