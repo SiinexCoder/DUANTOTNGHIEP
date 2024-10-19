@@ -123,9 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
-<<<<<<< HEAD
---- !u!1 &361029345
-=======
 --- !u!1 &52877
 GameObject:
   m_ObjectHideFlags: 0
@@ -2324,7 +2321,6 @@ Transform:
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &518782505
->>>>>>> Dii
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2332,9 +2328,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 361029348}
-  - component: {fileID: 361029347}
-  - component: {fileID: 361029346}
+  - component: {fileID: 518782508}
+  - component: {fileID: 518782507}
+  - component: {fileID: 518782506}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2342,21 +2338,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &361029346
+--- !u!81 &518782506
 AudioListener:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 361029345}
+  m_GameObject: {fileID: 518782505}
   m_Enabled: 1
---- !u!20 &361029347
+--- !u!20 &518782507
 Camera:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 361029345}
+  m_GameObject: {fileID: 518782505}
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
@@ -2401,13 +2397,13 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!4 &361029348
+--- !u!4 &518782508
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 361029345}
+  m_GameObject: {fileID: 518782505}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
@@ -7275,9 +7271,6 @@ Transform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-<<<<<<< HEAD
-  - {fileID: 361029348}
-=======
   - {fileID: 518782508}
   - {fileID: 1704694837}
   - {fileID: 1231405675}
@@ -7362,4 +7355,3 @@ SceneRoots:
   - {fileID: 1804232982}
   - {fileID: 1547591}
   - {fileID: 2086882965}
->>>>>>> Dii
