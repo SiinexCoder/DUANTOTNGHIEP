@@ -29,24 +29,23 @@ public class LootItem
 
 
     // Hàm để xử lý va chạm
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            Debug.Log("Player has collided with the item.");
+        if (other.CompareTag("Player"))
+        {        
             DropLoot();
             Destroy(gameObject);
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            DropLoot();
-            Destroy(gameObject);
-        }
-    }
+    // private void OnTriggerEnter2D(Collider2D other)
+    // {
+    //     if (other.CompareTag("Player"))
+    //     {
+    //         DropLoot();
+    //         Destroy(gameObject);
+    //     }
+    // }
 
     private void DropLoot()
     {
