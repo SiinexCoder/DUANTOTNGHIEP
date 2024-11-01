@@ -9,10 +9,12 @@ public class PlayerHeath : MonoBehaviour
 
     int currentHeath;
 
-    // public Animator animator;
+    public Animator animator;
 
     public HeathBar heathBar;
     public UnityEvent OnDeath;
+
+    private Rigidbody2D rb; // Tham chiếu tới Rigidbody2D của nhân vật
 
     private void OnEnable()
     {
@@ -32,7 +34,9 @@ public class PlayerHeath : MonoBehaviour
     public void TakeDam(int damage)
     {
         currentHeath -= damage;
-        // animator.SetTrigger("Hurt");
+
+        animator.SetTrigger("Hurt");
+
         if (currentHeath <= 0)
         {
             currentHeath = 0;
@@ -40,6 +44,16 @@ public class PlayerHeath : MonoBehaviour
         }
         heathBar.UpdateBar(currentHeath, maxHeath);
     }
+    public void Heal(int healAmount)
+    {
+        currentHeath += healAmount; // Tăng máu hiện tại
+        if (currentHeath > maxHeath)
+        {
+            currentHeath = maxHeath; // Đảm bảo không vượt quá sức khỏe tối đa
+        }
+        heathBar.UpdateBar(currentHeath, maxHeath); // Cập nhật thanh máu
+    }
+
 
 
     public void Death()

@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 2063542191853563135}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.98, y: -0.12, z: 0}
+  m_LocalPosition: {x: 1.48, y: -0.12, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -63,7 +63,7 @@ Transform:
   m_GameObject: {fileID: 7280303482212129806}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -86.4, y: 172, z: 0}
+  m_LocalPosition: {x: -88.95, y: 170.94818, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -151,6 +151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHeath: 100
+  animator: {fileID: 8239581609486408233}
   heathBar: {fileID: 0}
   OnDeath:
     m_PersistentCalls:
@@ -181,8 +182,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 8239581609486408233}
   attackPoint: {fileID: 4543260385798196385}
-  attackRange: 0.2
-  emenyLayers:
+  attackRange: 1
+  enemyLayers:
     serializedVersion: 2
     m_Bits: 8
   attackDamage: 40
@@ -236,7 +237,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.017475128, y: -0.05380249}

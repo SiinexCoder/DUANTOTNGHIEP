@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 9053148680103742464}
   - component: {fileID: 2210502766794433063}
   - component: {fileID: 1836772048752265233}
-  - component: {fileID: 3396570480577353922}
+  - component: {fileID: -2555101980885169736}
   m_Layer: 3
   m_Name: Slime
   m_TagString: Untagged
@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 3785392390226578338}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -90.03753, y: 171.746, z: 0}
+  m_LocalPosition: {x: -84.05802, y: 169.41132, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -166,7 +166,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -194,7 +194,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e7d65427224bbd4f9fbb822348b3913, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3396570480577353922
+--- !u!114 &-2555101980885169736
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -208,5 +208,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minDamage: 10
   maxDamage: 10
-  maxHeath: 100
+  maxHealth: 100
+  moveSpeed: 2
+  detectionRange: 5
+  attackRange: 1.5
+  attackCooldown: 1
   animator: {fileID: 7144582123836185540}
+  wanderRadius: 3
+  knockbackForce: 1
