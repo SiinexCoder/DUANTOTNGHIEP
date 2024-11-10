@@ -41,6 +41,6 @@ public class Timer : MonoBehaviour
             isNightTime = true;  // Thời gian tối
         }
 
-        Debug.Log("isNightTime: " + isNightTime);  // Kiểm tra giá trị của isNightTime
+       // Debug.Log("isNightTime: " + isNightTime);  // Kiểm tra giá trị của isNightTime
     }
 }

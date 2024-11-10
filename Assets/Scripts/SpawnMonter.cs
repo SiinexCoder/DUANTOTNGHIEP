@@ -118,7 +118,7 @@ private void UpdateSpawnSettings()
 
     void OnDrawGizmosSelected()  
     {  
-        // Vẽ khu vực spawn và không spawn để dễ quan sát trong Scene  
+        
         if (spawnAreaCollider != null)  
         {  
             Gizmos.color = Color.green;  
