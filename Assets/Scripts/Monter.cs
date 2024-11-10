@@ -54,6 +54,7 @@ public class Monster : MonoBehaviour
             // Lật quái vật để đối diện bên trái
             transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
             isFlipped = true;
+            
         }
     }
 
