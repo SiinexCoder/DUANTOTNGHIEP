@@ -196,8 +196,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 357cd399fb904e24188dba30b8b23fd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lootItems: []
+  dropDistance: 1
   health: 10
-  damage: 1
+  damage: 3
   damageSound: {fileID: 8300000, guid: a4366158371c9514cae30cfff454dcb2, type: 3}
   deathSound: {fileID: 8300000, guid: ff8240148ee026c4babb53949381e1cd, type: 3}
   damagedColor: {r: 1, g: 0, b: 0, a: 1}
@@ -321,7 +323,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.292
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 0
   Mute: 0

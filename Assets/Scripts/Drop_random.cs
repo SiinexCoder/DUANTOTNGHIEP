@@ -10,15 +10,6 @@ public class Drop_random : MonoBehaviour
     // Khoảng cách ngẫu nhiên (trong đơn vị) cho các món đồ rơi ra
     public float dropDistance = 1.0f; 
 
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
-    }
     [System.Serializable]
 public class LootItem
 {
@@ -27,16 +18,6 @@ public class LootItem
     public float dropChance; // tỉ lệ rơi đồ của món đồ
 }
 
-
-    // Hàm để xử lý va chạm
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {        
-            DropLoot();
-            Destroy(gameObject);
-        }
-    }
 
     // private void OnTriggerEnter2D(Collider2D other)
     // {

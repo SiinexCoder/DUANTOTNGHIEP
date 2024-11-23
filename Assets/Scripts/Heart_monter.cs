@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class Heart_monter : MonoBehaviour
 {
+    public List<LootItem> lootItems;
+    public float dropDistance = 1.0f;
+    [System.Serializable]
+    public class LootItem
+    {
+        public GameObject prefab; // prefab của món đồ
+        [Range(0, 1)]
+        public float dropChance; // tỉ lệ rơi đồ của món đồ
+    }
     public int health = 10; // Số máu của quái
     public int damage = 1; // Số máu bị trừ mỗi lần va chạm với Player
     private bool canDamage = true; // Biến kiểm tra xem quái có thể gây sát thương hay không
@@ -63,7 +72,7 @@ public class Heart_monter : MonoBehaviour
 
     private void Die()
     {
-        Debug.Log("Monster died!");
+       
 
         // Phát âm thanh khi chết
         if (audioSource != null && deathSound != null)
@@ -77,6 +86,7 @@ public class Heart_monter : MonoBehaviour
             animator.SetTrigger("OnDied");
         }
 
+        DropLoot();
         // Phá hủy game object sau khi chạy animation (tùy ý)
         Destroy(gameObject, 0.4f); // Để 1 giây trước khi xóa quái (hoặc chỉnh sửa tùy ý)
     }
@@ -93,5 +103,23 @@ public class Heart_monter : MonoBehaviour
         spriteRenderer.color = damagedColor; // Đổi sang màu bị sát thương
         yield return new WaitForSeconds(0.2f); // Chờ 0.2 giây
         spriteRenderer.color = originalColor; // Đổi lại màu ban đầu
+    }
+
+    private void DropLoot()
+    {
+        // Tạo một số ngẫu nhiên từ 0 đến 1 cho từng item
+        foreach (LootItem lootItem in lootItems)
+        {
+            if (Random.value < lootItem.dropChance)
+            {
+                // Nếu tỉ lệ rơi đồ đạt yêu cầu, tạo món đồ
+                Vector3 randomPosition = transform.position + new Vector3(
+                    Random.Range(-dropDistance, dropDistance),
+                    Random.Range(-dropDistance, dropDistance),
+                    0); // Không thay đổi trục Z
+
+                Instantiate(lootItem.prefab, randomPosition, Quaternion.identity);
+            }
+        }
     }
 }
