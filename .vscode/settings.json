@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Test2.sln"
+    "dotnet.defaultSolution": "DUANTOTNGHIEP.sln"
 }
