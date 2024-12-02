@@ -4,16 +4,16 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - ItemDrop
   - Monter
-  - AttackPoint
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Enemies
+  - Player
   - Water
   - UI
-  - 
+  - Enemy
   - 
   - 
   - 

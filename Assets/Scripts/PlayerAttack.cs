@@ -1,50 +1,70 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    public Animator animator;
+    public float attackRange = 1.5f; // Phạm vi tấn công
+    public float attackDamage = 20f; // Sát thương mỗi đòn đánh
+    public float maxAttackDistance = 2f; // Tầm đánh tối đa
+    public LayerMask enemyLayer; // Layer chứa quái vật
 
-    public Transform attackPoint;
+    public Animator animator; // Tham chiếu Animator để chạy hoạt ảnh
 
-    public float attackRange = 0.5f;
-
-    public LayerMask enemyLayers;
-
-    public int attackDamage = 40;
-
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        HandleAttack();
+    }
+
+    private void HandleAttack()
+    {
+        // Kiểm tra nhấn chuột phải để tấn công
+        if (Input.GetMouseButtonDown(0))
         {
-            Attack();
+            // Lấy vị trí của con trỏ chuột
+            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            mousePosition.z = transform.position.z;
+
+            // Kiểm tra nếu con trỏ chuột nằm trong tầm đánh tối đa
+            float distanceToMouse = Vector3.Distance(transform.position, mousePosition);
+            if (distanceToMouse <= maxAttackDistance)
+            {
+                // Kích hoạt hoạt ảnh tấn công
+                animator.SetTrigger("Attack");
+
+                Attack(mousePosition);
+            }
+            else
+            {
+                Debug.Log("Vị trí tấn công nằm ngoài tầm đánh!");
+            }
         }
     }
 
-    void Attack()
+    private void Attack(Vector3 attackPosition)
     {
-        animator.SetTrigger("Attack");
+        // Tìm tất cả quái vật trong phạm vi tấn công
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPosition, attackRange, enemyLayer);
 
-        // Lấy tất cả các quái vật trong vùng tấn công
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
-
+        // Gây sát thương cho từng quái
         foreach (Collider2D enemy in hitEnemies)
         {
-            // Tính toán hướng va chạm từ Player đến quái vật
-            Vector2 hitDirection = (enemy.transform.position - transform.position).normalized;
-
-            // Gọi phương thức TakeDamageEnemy với cả sát thương và hướng va chạm
-            enemy.GetComponent<EnemyController>().TakeDamageEnemy(attackDamage, hitDirection);
+            enemy.GetComponent<EnemyController>()?.TakeDamage(attackDamage);
         }
+
+        Debug.Log($"Tấn công tại vị trí {attackPosition}. Số quái bị trúng: {hitEnemies.Length}");
     }
 
-    void OnDrawGizmosSelected()
+    // Hiển thị phạm vi tấn công và tầm đánh tối đa trong Scene
+    private void OnDrawGizmosSelected()
     {
-        if (attackPoint == null)
-            return;
+        Gizmos.color = Color.red;
+        Vector3 mousePosition = Camera.main != null ? Camera.main.ScreenToWorldPoint(Input.mousePosition) : transform.position;
+        mousePosition.z = transform.position.z;
 
-        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+        // Vẽ phạm vi tấn công tại vị trí con trỏ chuột
+        Gizmos.DrawWireSphere(mousePosition, attackRange);
+
+        // Vẽ tầm đánh tối đa từ vị trí nhân vật
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, maxAttackDistance);
     }
 }

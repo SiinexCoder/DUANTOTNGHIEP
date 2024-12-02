@@ -1,56 +1,63 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-
-
-public class Player : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
-    public float moveSpeed = 5f;
+    public float moveSpeed = 5f; // Tốc độ di chuyển
+    private Vector2 moveDirection; // Hướng di chuyển
+    private Vector3 targetPosition; // Vị trí mục tiêu
+    private bool isMoving = false; // Trạng thái di chuyển
+    private Animator animator; // Animator của nhân vật
 
-    private Rigidbody2D rb;
-    public Animator animator;
-    public Vector3 moveInput;
-
-    [SerializeField]
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-
-        animator = GetComponent<Animator>();    
+        animator = GetComponent<Animator>(); // Lấy Animator từ nhân vật
     }
 
-    // Update is called once per frame
     void Update()
     {
-        moveInput.x = Input.GetAxis("Horizontal");
-        moveInput.y = Input.GetAxis("Vertical");
-        transform.position += moveInput * moveSpeed * Time.deltaTime;
-
-        animator.SetFloat("Speed", moveInput.sqrMagnitude);
-        if (moveInput.x != 0)
+        // Nhấn chuột trái để di chuyển
+        if (Input.GetMouseButtonDown(1))
         {
-            if (moveInput.x > 0)
-                transform.localScale = new Vector3(1, 1, 1);
+            targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            targetPosition.z = 0; // Giữ Z ở mức 0
+            moveDirection = (targetPosition - transform.position).normalized;
+            isMoving = true;
+        }
 
-            else
-                transform.localScale = new Vector3(-1, 1, 1);
+        // Kiểm tra nếu đã tới vị trí mục tiêu
+        if (isMoving && Vector2.Distance(transform.position, targetPosition) < 0.1f)
+        {
+            isMoving = false;
+        }
+
+        // Xoay nhân vật
+        if (isMoving)
+        {
+            RotatePlayer(targetPosition);
+        }
+
+        // Cập nhật Animator
+        animator.SetBool("isRunning", isMoving);
+    }
+
+    void FixedUpdate()
+    {
+        if (isMoving)
+        {
+            transform.position += (Vector3)moveDirection * moveSpeed * Time.fixedDeltaTime;
         }
     }
 
-    // private void OnTriggerEnter2D(Collider2D collision)
-    // {
-    //   if (collision.GetComponent<Coin>())
-    //     {
-    //         Destroy(collision.gameObject);
-    //     }
-    // }
-
-   
-
-    public PlayerHeath playerHeath;
-    public void TakeDamage(int damage)
+    void RotatePlayer(Vector3 targetPosition)
     {
-        playerHeath.TakeDam(damage);
+        float direction = targetPosition.x - transform.position.x;
+        if (direction > 0)
+        {
+            transform.localScale = new Vector3(1, 1, 1); // Quay phải
+        }
+        else if (direction < 0)
+        {
+            transform.localScale = new Vector3(-1, 1, 1); // Quay trái
+        }
     }
 }

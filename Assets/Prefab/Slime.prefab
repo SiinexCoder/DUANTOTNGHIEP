@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2210502766794433063}
   - component: {fileID: 1836772048752265233}
   - component: {fileID: -2555101980885169736}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Slime
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -206,13 +206,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce2e5ef7a65b5764caa5727fed3afce0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minDamage: 10
-  maxDamage: 10
-  maxHealth: 100
-  moveSpeed: 2
-  detectionRange: 5
-  attackRange: 1.5
-  attackCooldown: 1
-  animator: {fileID: 7144582123836185540}
-  wanderRadius: 3
-  knockbackForce: 1
+  health: 20
