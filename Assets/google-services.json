@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1045152848533",
+    "firebase_url": "https://duantotnghiep-c6a43-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "duantotnghiep-c6a43",
+    "storage_bucket": "duantotnghiep-c6a43.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1045152848533:android:de660695ee5d70524f999c",
+        "android_client_info": {
+          "package_name": "dangnhapdangky.com"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1045152848533-t10r6ts1id7q49adefb9vdl1ondn2d5j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAVNC2t4qI6-gvAcMEV9J7I1i5FFoY6Wbc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1045152848533-t10r6ts1id7q49adefb9vdl1ondn2d5j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
