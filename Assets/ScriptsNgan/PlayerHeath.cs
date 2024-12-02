@@ -32,6 +32,7 @@ public class PlayerHeath : MonoBehaviour
         if (currentHeath <= 0)
         {
             currentHeath = 0;
+            Destroy(gameObject);
             // Thêm logic chết nếu cần
         }
         heathBar.UpdateBar(currentHeath, maxHeath); // Cập nhật thanh máu
