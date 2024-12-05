@@ -39,7 +39,7 @@ public class Heart_item : MonoBehaviour
 
    private void OnTriggerEnter2D(Collider2D other)
 {
-    if (other.CompareTag("Player") && canDamage)
+    if (other.CompareTag("Swork") && canDamage)
     {
         TakeDamage(damage); // Gọi hàm giảm máu
     }
