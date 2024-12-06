@@ -7,7 +7,6 @@ public class InventoryUI : MonoBehaviour
     public Transform inventoryPanel; // Panel chứa các ô item
     public GameObject inventorySlotPrefab; // Prefab slot
     public Inventory playerInventory; // Tham chiếu đến Inventory của Player
-    private bool isInventoryOpen = false; // Biến theo dõi trạng thái mở hay đóng của inventory
 
     private void Start()
     {
@@ -16,7 +15,7 @@ public class InventoryUI : MonoBehaviour
 
     public void UpdateUI()
     {
-        
+
         // Xóa các slot cũ trong UI
         foreach (Transform child in inventoryPanel)
         {
@@ -47,30 +46,32 @@ public class InventoryUI : MonoBehaviour
     }
 
     void Update()
-{
-    // Kiểm tra khi người chơi nhấn phím số 3 để sử dụng vật phẩm hồi máu
-    if (Input.GetKeyDown(KeyCode.Alpha3))
     {
-        Debug.Log("Phím 3 được nhấn");
-        Inventory inventory = FindObjectOfType<Inventory>();
-        if (inventory != null)
+        // Kiểm tra khi người chơi nhấn phím số 1 để sử dụng vật phẩm hồi máu
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            inventory.UseHealingItem(); // Gọi hàm sử dụng vật phẩm hồi máu
-        }
-    }
-
-    // Kiểm tra phím B để mở hoặc đóng inventory
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            isInventoryOpen = !isInventoryOpen; // Đảo ngược trạng thái
-            inventoryPanel.gameObject.SetActive(isInventoryOpen); // Hiển thị hoặc ẩn panel
-
-            if (isInventoryOpen)
+            Debug.Log("Phím 1 được nhấn");
+            Inventory inventory = FindObjectOfType<Inventory>();
+            if (inventory != null)
             {
-                UpdateUI(); // Cập nhật UI khi mở inventory
+                inventory.UseHealingItem(); // Gọi hàm sử dụng vật phẩm hồi máu
             }
         }
-}
+        // Kiểm tra phím 2 để sử dụng thuốc tăng tốc trong InventoryUI
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            Inventory inventory = FindObjectOfType<Inventory>();
+            if (inventory != null)
+            {
+                inventory.UseSpeedPotion(); // Sử dụng thuốc tăng tốc
+            }
+        }
+
+
+        // Kiểm tra phím B để mở hoặc đóng inventory
+    }
+
+
 
 }
 

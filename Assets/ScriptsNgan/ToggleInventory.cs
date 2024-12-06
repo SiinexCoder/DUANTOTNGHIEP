@@ -14,4 +14,5 @@ public class ToggleInventory : MonoBehaviour
         inventoryPanel.SetActive(isInventoryVisible); // Hiển thị hoặc ẩn panel chứa item
         inventoryUI.SetActive(isInventoryVisible);    // Có thể để ẩn nếu không muốn UI phụ xuất hiện
     }
+    
 }

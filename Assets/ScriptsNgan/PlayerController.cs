@@ -8,14 +8,23 @@ public class PlayerController : MonoBehaviour
     private bool isMoving = false; // Trạng thái di chuyển
     private Animator animator; // Animator của nhân vật
 
+    private AudioSource footstepAudio; // Âm thanh bước chân
+
+    public GameObject sword; // Kiếm
+    public GameObject bow;   // Cung
+    private bool isUsingBow = false; // Trạng thái vũ khí hiện tại
+
     void Start()
     {
         animator = GetComponent<Animator>(); // Lấy Animator từ nhân vật
+        footstepAudio = GetComponent<AudioSource>(); // Lấy AudioSource trên nhân vật
+
+        EquipSword(); // Mặc định sử dụng kiếm
     }
 
     void Update()
     {
-        // Nhấn chuột trái để di chuyển
+        // Nhấn chuột phải để di chuyển
         if (Input.GetMouseButtonDown(1))
         {
             targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -36,9 +45,29 @@ public class PlayerController : MonoBehaviour
             RotatePlayer(targetPosition);
         }
 
+        // Phát âm thanh bước chân
+        HandleFootstepSound();
+
         // Cập nhật Animator
         animator.SetBool("isRunning", isMoving);
+
+        // Nhấn Q để đổi vũ khí
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            if (isUsingBow)
+                EquipSword();
+            else
+                EquipBow();
+        }
+
+        // Tấn công bằng cung (bắn mũi tên)
+        if (Input.GetMouseButtonDown(0) && isUsingBow) // Nếu nhấn chuột trái và đang sử dụng cung
+        {
+            // Gọi hàm bắn mũi tên
+            FindObjectOfType<PlayerAttack>().ShootArrow(); // Kiểm tra xem bạn có gọi đúng hàm bắn mũi tên hay không
+        }
     }
+
 
     void FixedUpdate()
     {
@@ -60,4 +89,41 @@ public class PlayerController : MonoBehaviour
             transform.localScale = new Vector3(-1, 1, 1); // Quay trái
         }
     }
+
+    void HandleFootstepSound()
+    {
+        if (isMoving)
+        {
+            if (!footstepAudio.isPlaying) // Nếu âm thanh chưa phát
+            {
+                footstepAudio.Play(); // Phát âm thanh bước chân
+            }
+        }
+        else
+        {
+            if (footstepAudio.isPlaying) // Nếu âm thanh đang phát
+            {
+                footstepAudio.Stop(); // Dừng âm thanh bước chân
+            }
+        }
+    }
+
+    void EquipSword()
+    {
+        isUsingBow = false;
+        sword.SetActive(true);  // Bật kiếm
+        bow.SetActive(false);   // Tắt cung
+        animator.SetBool("isUsingBow", false); // Cập nhật Animator
+    }
+
+    void EquipBow()
+    {
+        isUsingBow = true;
+        sword.SetActive(false); // Tắt kiếm
+        bow.SetActive(true);    // Bật cung
+        animator.SetBool("isUsingBow", true);  // Cập nhật Animator
+    }
+
 }
+
+

@@ -2,29 +2,30 @@ using UnityEngine;
 
 public class ItemPickup : MonoBehaviour
 {
-    public Item item;
-
-    public InventoryUI inventoryUI; // Tham chiếu đến InventoryUI
-
+    public Item item;  // Đảm bảo item có thể là SpeedPotion
+    public InventoryUI inventoryUI;
 
     private void OnTriggerEnter2D(Collider2D collision)
+{
+    if (collision.CompareTag("Player"))
     {
-        if (collision.CompareTag("Player"))
+        Inventory inventory = collision.GetComponent<Inventory>();
+        if (inventory != null && inventory.AddItem(item)) // Thêm item vào inventory
         {
-            Inventory inventory = collision.GetComponent<Inventory>();
-            if (inventory != null && inventory.AddItem(item))
+            if (inventoryUI != null)
             {
-                if (inventoryUI != null)
-                {
-                    inventoryUI.UpdateUI();
-                }
-                else
-                {
-                    Debug.LogError("InventoryUI not assigned in ItemPickup!");
-                }
-
-                Destroy(gameObject); // Xóa item khỏi Scene
+                inventoryUI.UpdateUI(); // Cập nhật UI nếu có
             }
+            else
+            {
+                Debug.LogError("InventoryUI not assigned in ItemPickup!"); // Kiểm tra lỗi nếu chưa có UI
+            }
+
+            Destroy(gameObject); // Xóa item khỏi scene sau khi nhặt
         }
     }
 }
+
+}
+
+
