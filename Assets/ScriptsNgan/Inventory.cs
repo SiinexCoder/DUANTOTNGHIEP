@@ -1,112 +1,164 @@
-using System.Collections;
-using System.Runtime.InteropServices;
-using UnityEngine;
 using System.Collections.Generic;
-
+using UnityEngine;
+using System.Collections;
 
 public class Inventory : MonoBehaviour
 {
-    public List<ItemStack> items = new List<ItemStack>();  // Danh sách các item trong inventory
-    public int maxSlots = 10;  // Số lượng slot tối đa
+    public List<ItemStack> items = new List<ItemStack>(); // Danh sách các item trong inventory
+    public int maxSlots = 10; // Số lượng slot tối đa
+    public SlotManager slotManager; // Tham chiếu đến SlotManager
 
-    // Thêm item vào inventory
+    private float speedPotionCooldown = 0f; // Thời gian cooldown của thuốc tăng tốc
+    private bool isSpeedPotionActive = false; // Kiểm tra xem thuốc tăng tốc có đang hoạt động không
+
+    void Start()
+    {
+        // Đảm bảo gọi UpdateSlots để cập nhật UI ban đầu
+        UpdateSlots();
+    }
+
+    private void Update()
+    {
+        // Cập nhật thời gian cooldown
+        if (speedPotionCooldown > 0f)
+        {
+            speedPotionCooldown -= Time.deltaTime;  // Giảm thời gian cooldown mỗi frame
+        }
+
+        // Kiểm tra phím bấm và cooldown trước khi sử dụng
+        if (Input.GetKeyDown(KeyCode.Alpha1) && speedPotionCooldown <= 0f)
+        {
+            UseHealingItem();  // Sử dụng Speed Potion
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2) && speedPotionCooldown <= 0f)
+        {
+            UseSpeedPotion();  // Sử dụng Speed Potion
+        }
+    }
+
+    private void UpdateSlots()
+    {
+        // Tìm Healing Item và Speed Potion trong Inventory
+        ItemStack healingStack = items.Find(stack => stack.item is HealingItem);
+        ItemStack speedPotionStack = items.Find(stack => stack.item is SpeedPotion);
+
+        // Gửi dữ liệu đến SlotManager để cập nhật UI
+        slotManager.UpdateSlot(
+            healingStack?.item, healingStack?.quantity ?? 0,
+            speedPotionStack?.item, speedPotionStack?.quantity ?? 0
+        );
+    }
+
     public bool AddItem(Item item)
     {
         foreach (ItemStack stack in items)
         {
             if (stack.item == item && stack.item.isStackable)
             {
-                stack.quantity += 1;  // Tăng số lượng nếu có thể stack
+                stack.quantity += 1; // Tăng số lượng nếu có thể stack
+                UpdateSlots(); // Cập nhật UI
                 return true;
             }
         }
 
         if (items.Count < maxSlots)
         {
-            items.Add(new ItemStack(item, 1));  // Thêm item mới vào inventory
+            items.Add(new ItemStack(item, 1)); // Thêm item mới vào inventory
+            UpdateSlots(); // Cập nhật UI
             return true;
         }
 
         return false;
     }
 
-    // Kiểm tra và sử dụng vật phẩm hồi máu
     public void UseHealingItem()
     {
         ItemStack healingStack = items.Find(stack => stack.item is HealingItem);
-        if (healingStack != null)
+        if (healingStack == null)
         {
-            HealingItem healingItem = healingStack.item as HealingItem;
-            if (healingItem != null)
-            {
-                PlayerHeath playerHealth = FindObjectOfType<PlayerHeath>();
-                playerHealth.Heal(healingItem.healingAmount);  // Hồi máu cho player
-                healingStack.quantity -= 1;
-
-                if (healingStack.quantity <= 0)
-                {
-                    items.Remove(healingStack);  // Nếu hết thuốc, xóa khỏi inventory
-                }
-
-                FindObjectOfType<InventoryUI>().UpdateUI();  // Cập nhật UI
-            }
+            Debug.LogWarning("Không có vật phẩm hồi máu trong inventory.");
+            return;
         }
+
+        HealingItem healingItem = healingStack.item as HealingItem;
+        PlayerHealth playerHealth = FindObjectOfType<PlayerHealth>();
+
+        if (playerHealth != null)
+        {
+            // Kiểm tra nếu máu hiện tại đã đầy
+            if (playerHealth.currentHealth == playerHealth.maxHealth)
+            {
+                Debug.Log("Máu đã đầy, không thể sử dụng vật phẩm hồi máu.");
+                return; // Dừng việc sử dụng vật phẩm nếu máu đã đầy
+            }
+
+            // Hồi máu
+            playerHealth.Heal(healingItem.healingAmount);
+        }
+
+        // Giảm số lượng vật phẩm sau khi sử dụng
+        healingStack.quantity -= 1;
+
+        // Xóa item khỏi inventory nếu số lượng bằng 0
+        if (healingStack.quantity <= 0)
+        {
+            items.Remove(healingStack); // Xóa item khỏi inventory
+        }
+
+        // Cập nhật lại UI sau khi sử dụng item
+        UpdateSlots(); // Cập nhật UI
     }
 
-    // Kiểm tra và sử dụng thuốc tăng tốc
+
     public void UseSpeedPotion()
     {
-        ItemStack speedPotionStack = items.Find(stack => stack.item is SpeedPotion);
-        if (speedPotionStack != null)
+        if (isSpeedPotionActive)
         {
-            SpeedPotion speedPotion = speedPotionStack.item as SpeedPotion;
-            if (speedPotion != null)
-            {
-                PlayerController playerController = FindObjectOfType<PlayerController>();
-                if (playerController != null)
-                {
-                    StartCoroutine(ApplySpeedBoost(playerController, speedPotion));  // Áp dụng thuốc tăng tốc
-                }
-
-                speedPotionStack.quantity -= 1;
-                if (speedPotionStack.quantity <= 0)
-                {
-                    items.Remove(speedPotionStack);  // Nếu hết thuốc, xóa khỏi inventory
-                }
-
-                FindObjectOfType<InventoryUI>().UpdateUI();  // Cập nhật UI
-            }
+            Debug.Log("Thuốc tăng tốc đang có hiệu lực. Không thể sử dụng thêm.");
+            return;
         }
+
+        ItemStack speedPotionStack = items.Find(stack => stack.item is SpeedPotion);
+        if (speedPotionStack == null || speedPotionStack.quantity == 0)
+        {
+            Debug.LogWarning("Không có vật phẩm tăng tốc trong inventory.");
+            return;
+        }
+
+        SpeedPotion speedPotion = speedPotionStack.item as SpeedPotion;
+        PlayerController playerController = FindObjectOfType<PlayerController>();
+        if (playerController != null)
+        {
+            StartCoroutine(ApplySpeedBoost(playerController, speedPotion)); // Áp dụng hiệu ứng tăng tốc
+        }
+
+        // Giảm số lượng vật phẩm sau khi sử dụng
+        speedPotionStack.quantity -= 1;
+        if (speedPotionStack.quantity <= 0)
+        {
+            items.Remove(speedPotionStack); // Xóa item nếu số lượng là 0
+        }
+
+        // Thiết lập cooldown và đánh dấu hiệu ứng đang hoạt động
+        speedPotionCooldown = speedPotion.cooldownDuration;
+        isSpeedPotionActive = true;
+
+        // Cập nhật lại UI sau khi sử dụng item
+        UpdateSlots(); // Cập nhật UI
     }
 
-    // Áp dụng thuốc tăng tốc cho player
+
     private IEnumerator ApplySpeedBoost(PlayerController playerController, SpeedPotion speedPotion)
     {
         float originalSpeed = playerController.moveSpeed;
         playerController.moveSpeed += speedPotion.speedBoostAmount;
 
-        yield return new WaitForSeconds(speedPotion.duration);
+        yield return new WaitForSeconds(speedPotion.duration); // Thời gian hiệu lực
 
-        playerController.moveSpeed = originalSpeed;
+        playerController.moveSpeed = originalSpeed;  // Kết thúc hiệu ứng tăng tốc
+        isSpeedPotionActive = false; // Đánh dấu hiệu ứng đã kết thúc
+        Debug.Log("Hiệu ứng tăng tốc kết thúc.");
     }
-
-
-    // void Update()
-    // {
-    //      if (Input.GetKeyDown(KeyCode.Alpha1))
-    //     {
-    //         UseHealingItem(); // Gọi phương thức sử dụng thuốc hồi máu
-    //     }
-    //     if (Input.GetKeyDown(KeyCode.Alpha2))
-    //     {
-    //         UseSpeedPotion(); // Gọi phương thức sử dụng thuốc tăng tốc
-    //     }
-
-    // }
 }
-
-
-
-
 
 

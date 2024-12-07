@@ -1,20 +1,20 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class PlayerHeath : MonoBehaviour
+public class PlayerHealth : MonoBehaviour
 {
-    [SerializeField] int maxHeath;
-    int currentHeath;
+    [SerializeField] public int maxHealth;
+    public int currentHealth;
 
-    public HeathBar heathBar;
+    public HealthBar healthBar;
 
     public AudioClip hurtSound; // Âm thanh bị thương
     private AudioSource audioSource; // Nguồn phát âm thanh
 
     private void Start()
 {
-    currentHeath = maxHeath;
-    heathBar.UpdateBar(currentHeath, maxHeath);
+    currentHealth = maxHealth;
+    healthBar.UpdateBar(currentHealth, maxHealth);
 
     // Tham chiếu tới AudioSource riêng
     audioSource = transform.Find("HurtAudio").GetComponent<AudioSource>();
@@ -27,19 +27,19 @@ public class PlayerHeath : MonoBehaviour
 
     public void Heal(int healAmount)
     {
-        currentHeath += healAmount; // Tăng máu hiện tại
-        if (currentHeath > maxHeath)
+        currentHealth += healAmount; // Tăng máu hiện tại
+        if (currentHealth > maxHealth)
         {
-            currentHeath = maxHeath; // Đảm bảo không vượt quá sức khỏe tối đa
+            currentHealth = maxHealth; // Đảm bảo không vượt quá sức khỏe tối đa
         }
-        heathBar.UpdateBar(currentHeath, maxHeath); // Cập nhật thanh máu
+        healthBar.UpdateBar(currentHealth, maxHealth); // Cập nhật thanh máu
     }
 
     public void TakeDam(int damage)
 {
     Debug.Log("TakeDam được gọi!");
 
-    currentHeath -= damage;
+    currentHealth -= damage;
 
     // Phát âm thanh bị thương
     if (hurtSound != null && audioSource != null)
@@ -52,12 +52,13 @@ public class PlayerHeath : MonoBehaviour
         Debug.LogError("HurtSound hoặc AudioSource không hợp lệ!");
     }
 
-    if (currentHeath <= 0)
+    if (currentHealth <= 0)
     {
-        currentHeath = 0;
+        currentHealth = 0;
+        Destroy(gameObject); // Hủy nhân vật
         Debug.Log("Player đã chết!");
     }
-    heathBar.UpdateBar(currentHeath, maxHeath);
+    healthBar.UpdateBar(currentHealth, maxHealth);
 }
 
     void Update()

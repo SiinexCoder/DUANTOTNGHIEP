@@ -12,6 +12,8 @@ public class PlayerAttack : MonoBehaviour
     public float arrowSpeed = 10f; // Tốc độ mũi tên
     public float arrowDamage = 20f; // Sát thương cho mũi tên
 
+    public float bowCooldownTime = 1f; // Thời gian cooldown giữa hai lần bắn cung (ví dụ: 1 giây)
+    private float lastBowAttackTime = -1f; // Thời gian của lần bắn cung cuối cùng
 
     public Animator animator; // Tham chiếu Animator để chạy hoạt ảnh
 
@@ -25,11 +27,21 @@ public class PlayerAttack : MonoBehaviour
 
     private void HandleAttack()
     {
-        if (Input.GetMouseButtonDown(0)) // Nhấn chuột trái để tấn công
+        // Nếu nhấn chuột trái
+        if (Input.GetMouseButtonDown(0))
         {
             if (isUsingBow)
             {
-                ShootArrow(); // Tấn công bằng cung
+                // Kiểm tra cooldown trước khi cho phép bắn
+                if (Time.time - lastBowAttackTime >= bowCooldownTime)
+                {
+                    ShootArrow(); // Tấn công bằng cung
+                    lastBowAttackTime = Time.time; // Cập nhật thời gian của lần bắn cung hiện tại
+                }
+                else
+                {
+                    Debug.Log("Cooldown chưa kết thúc, không thể bắn mũi tên.");
+                }
             }
             else
             {
@@ -85,27 +97,6 @@ public class PlayerAttack : MonoBehaviour
                 float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg; // Tính toán góc theo radian
                 arrow.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle)); // Áp dụng góc xoay vào mũi tên
             }
-
         }
     }
-
-    // Xử lý va chạm cho mũi tên
-    // void OnTriggerEnter2D(Collider2D other)
-    // {
-    //     // Kiểm tra nếu mũi tên va vào đối tượng có layer "Enemy"
-    //     if (other.gameObject.layer == LayerMask.NameToLayer("Enemy")) // Kiểm tra layer "Enemy"
-    //     {
-    //         // Lấy EnemyController từ quái vật để gọi phương thức TakeDamage
-    //         EnemyController enemy = other.GetComponent<EnemyController>();
-    //         if (enemy != null)
-    //         {
-    //             // Gây sát thương cho enemy
-    //             enemy.TakeDamage(attackDamage);
-    //             Debug.Log("Mũi tên trúng quái vật!");
-    //         }
-
-    //         // Sau khi mũi tên va chạm với enemy, bạn có thể hủy mũi tên đi
-    //         Destroy(gameObject); // Hủy mũi tên sau khi va chạm
-    //     }
-    // }
 }

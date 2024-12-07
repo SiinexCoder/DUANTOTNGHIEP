@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-public class HeathBar : MonoBehaviour
+public class HealthBar : MonoBehaviour
 {
    public Image fillBar;
    public TextMeshProUGUI valueText;

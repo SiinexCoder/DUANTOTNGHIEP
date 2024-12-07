@@ -3,8 +3,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New SpeedPotion", menuName = "Inventory/SpeedPotion")]
 public class SpeedPotion : Item
 {
-    public float speedBoostAmount;
-    public float duration;
+    public float speedBoostAmount;  // Số lượng tăng tốc
+    public float duration;  // Thời gian hiệu lực
+    public float cooldownDuration;  // Thời gian hồi của thuốc
 
     public SpeedPotion()
     {
@@ -17,4 +18,3 @@ public class SpeedPotion : Item
         Debug.Log($"Using {itemName} to boost speed.");
     }
 }
-
