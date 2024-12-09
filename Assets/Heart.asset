@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a88acd3b73b5f24f8fe5c2a3f0ce30f, type: 3}
-  m_Name: Item3
+  m_Name: Heart
   m_EditorClassIdentifier: 
   itemName: Heart
-  icon: {fileID: 21300000, guid: 099aa55284db27b4d838590f0e877734, type: 3}
+  icon: {fileID: 21300000, guid: ade7a8deee32f0445b3b13760a5ad94c, type: 3}
   isStackable: 1
