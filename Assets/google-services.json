@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "807475157281",
+    "project_id": "fir-duantotnghiep",
+    "storage_bucket": "fir-duantotnghiep.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:807475157281:android:75e620a1cad559c62d8660",
+        "android_client_info": {
+          "package_name": "com.DefaultCompany.Project"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBS4PNhtsOcOcnuUT_H4cd_5h8hP7RMNZs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
