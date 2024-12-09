@@ -4,39 +4,46 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    [SerializeField]  // Sửa chính tả thành SerializeField
-    private float _speed;
+    [SerializeField]  
+    private float _speed; // Tốc độ di chuyển của kẻ địch
 
-    [SerializeField]  // Sửa chính tả thành SerializeField
-    private float _rotationSpeed;
-     [SerializeField]
-    private float _screenBorder;
+    [SerializeField]  
+    private float _rotationSpeed; // Tốc độ xoay của kẻ địch
+
     [SerializeField]
-    private float _obstacleCheckCircleRadius;
+    private float _screenBorder; // Khoảng cách từ mép màn hình để đổi hướng
+
     [SerializeField]
-    private float _obstacleCheckDistance;
+    private float _obstacleCheckCircleRadius; // Bán kính kiểm tra vật cản
+
     [SerializeField]
-    private LayerMask _obstacleLayerMask;
-    private Rigidbody2D _rigidbody;
-    private PlayerAwarenessController _playerAwarenessController;
-    private Vector2 _targetDirection;
-    private float _changeDirectionCooldown;
-    private Camera _camera;
-    private RaycastHit2D[] _obstacleCollisions;
-    private float _obstacleAvoidanceCooldown;
-    private Vector2 _obstacleAvoidanceTargetDirection;
-    // Start is called before the first frame update
+    private float _obstacleCheckDistance; // Khoảng cách kiểm tra vật cản
+
+    [SerializeField]
+    private LayerMask _obstacleLayerMask; // Lớp dùng để phát hiện vật cản
+
+    private Rigidbody2D _rigidbody; // Thành phần Rigidbody2D của kẻ địch
+    private PlayerAwarenessController _playerAwarenessController; // Kiểm tra nhận thức của kẻ địch về người chơi
+    private Vector2 _targetDirection; // Hướng di chuyển mục tiêu hiện tại
+    private float _changeDirectionCooldown; // Thời gian chờ trước khi đổi hướng ngẫu nhiên
+    private Camera _camera; // Camera chính trong cảnh
+    private RaycastHit2D[] _obstacleCollisions; // Mảng lưu kết quả va chạm với vật cản
+    private float _obstacleAvoidanceCooldown; // Thời gian chờ trước khi thực hiện tránh vật cản lần tiếp theo
+    private Vector2 _obstacleAvoidanceTargetDirection; // Hướng tạm thời để tránh vật cản
+
     private void Awake()
     {
+        // Gán các thành phần cần thiết
         _rigidbody = GetComponent<Rigidbody2D>();
         _playerAwarenessController = GetComponent<PlayerAwarenessController>();
-        _targetDirection = transform.up;
-        _camera = Camera.main;
-        _obstacleCollisions = new RaycastHit2D[10];
+        _targetDirection = transform.up; // Hướng ban đầu
+        _camera = Camera.main; // Lấy camera chính
+        _obstacleCollisions = new RaycastHit2D[10]; // Khởi tạo mảng chứa kết quả kiểm tra vật cản
     }
 
     private void FixedUpdate()
     {
+        // Cập nhật hướng mục tiêu, xoay và di chuyển
         UpdateTargetDirection();
         RotateTowardsTarget();
         SetVelocity();
@@ -44,35 +51,38 @@ public class EnemyMovement : MonoBehaviour
 
     private void UpdateTargetDirection()
     {
-        HandleRandomDirectionChange();
-        HandlePlayerTargeting();
-        HandleObstacles();
-        HandleEnemyOffScreen();
+        HandleRandomDirectionChange(); // Đổi hướng ngẫu nhiên sau một khoảng thời gian
+        HandlePlayerTargeting(); // Đổi hướng về phía người chơi nếu nhận thấy người chơi
+        HandleObstacles(); // Tránh vật cản
+        HandleEnemyOffScreen(); // Điều chỉnh hướng nếu sắp ra ngoài màn hình
     }
 
     private void HandleRandomDirectionChange()
     {
-        _changeDirectionCooldown -= Time.deltaTime;
+        _changeDirectionCooldown -= Time.deltaTime; // Giảm thời gian chờ
 
-        if (_changeDirectionCooldown <= 0)
+        if (_changeDirectionCooldown <= 0) // Nếu hết thời gian chờ
         {
-            float angleChange = Random.Range (-90f , 90f);
-            Quaternion rotation = Quaternion.AngleAxis(angleChange, transform.forward);
-            _targetDirection = rotation * _targetDirection;
-            _changeDirectionCooldown = Random.Range(1f , 5f);
+            float angleChange = Random.Range(-90f, 90f); // Tạo góc ngẫu nhiên trong khoảng -90 đến 90 độ
+            Quaternion rotation = Quaternion.AngleAxis(angleChange, transform.forward); // Tạo phép quay quanh trục z
+            _targetDirection = rotation * _targetDirection; // Cập nhật hướng mục tiêu
+            _changeDirectionCooldown = Random.Range(1f, 5f); // Đặt lại thời gian chờ ngẫu nhiên
         }
     }
 
     private void HandlePlayerTargeting()
     {
-        if(_playerAwarenessController.AwareOfPlayer)
+        if (_playerAwarenessController.AwareOfPlayer) // Nếu nhận biết được người chơi
         {
-            _targetDirection = _playerAwarenessController.DirectionToPlayer;  // Sửa tên thuộc tính
+            _targetDirection = _playerAwarenessController.DirectionToPlayer; // Chuyển hướng về phía người chơi
         }
     }
+
     private void HandleEnemyOffScreen()
     {
-        Vector2 screenPosition = _camera.WorldToScreenPoint(transform.position);
+        Vector2 screenPosition = _camera.WorldToScreenPoint(transform.position); // Lấy vị trí của kẻ địch trên màn hình
+
+        // Nếu sắp ra khỏi mép màn hình, đảo ngược hướng di chuyển theo trục x hoặc y
         if ((screenPosition.x < _screenBorder && _targetDirection.x < 0) ||
             (screenPosition.x > _camera.pixelWidth - _screenBorder && _targetDirection.x > 0))
         {
@@ -87,11 +97,12 @@ public class EnemyMovement : MonoBehaviour
 
     private void HandleObstacles()
     {
-        _obstacleAvoidanceCooldown -= Time.deltaTime;
+        _obstacleAvoidanceCooldown -= Time.deltaTime; // Giảm thời gian chờ tránh vật cản
 
         var contactFilter = new ContactFilter2D();
-        contactFilter.SetLayerMask(_obstacleLayerMask);
+        contactFilter.SetLayerMask(_obstacleLayerMask); // Áp dụng lớp để kiểm tra vật cản
 
+        // Kiểm tra va chạm bằng CircleCast
         int numberOfCollisions = Physics2D.CircleCast(
             transform.position,
             _obstacleCheckCircleRadius,
@@ -100,41 +111,41 @@ public class EnemyMovement : MonoBehaviour
             _obstacleCollisions,
             _obstacleCheckDistance);
 
-            for (int index = 0; index < numberOfCollisions ; index++)
+        for (int index = 0; index < numberOfCollisions; index++)
+        {
+            var obstacleCollision = _obstacleCollisions[index];
+
+            if (obstacleCollision.collider.gameObject == gameObject) // Bỏ qua chính đối tượng kẻ địch
             {
-                var obstacleCollision = _obstacleCollisions[index];
-
-                if (obstacleCollision.collider.gameObject == gameObject)
-                {
-                    continue;
-                }
-                
-                if (_obstacleAvoidanceCooldown <= 0)
-                {
-                    _obstacleAvoidanceTargetDirection = obstacleCollision.normal;
-                    _obstacleAvoidanceCooldown = 0.5f;
-                }
-
-                var targetRotation = Quaternion.LookRotation(transform.forward , _obstacleAvoidanceTargetDirection);
-                var rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, _rotationSpeed * Time.deltaTime);
-
-                _targetDirection = rotation * Vector2.up;
-                break;
+                continue;
             }
+
+            if (_obstacleAvoidanceCooldown <= 0) // Nếu hết thời gian chờ tránh vật cản
+            {
+                _obstacleAvoidanceTargetDirection = obstacleCollision.normal; // Lấy hướng ngược lại từ vật cản
+                _obstacleAvoidanceCooldown = 0.5f; // Đặt lại thời gian chờ
+            }
+
+            var targetRotation = Quaternion.LookRotation(transform.forward, _obstacleAvoidanceTargetDirection); // Tính góc xoay mới
+            var rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, _rotationSpeed * Time.deltaTime);
+
+            _targetDirection = rotation * Vector2.up; // Cập nhật hướng mục tiêu
+            break; // Chỉ xử lý va chạm đầu tiên
+        }
     }
+
     private void RotateTowardsTarget()
     {
-
-        Quaternion targetRotation = Quaternion.LookRotation(transform.forward, _targetDirection);  // Sửa chính tả thành forward
+        // Tạo góc xoay mục tiêu về hướng hiện tại
+        Quaternion targetRotation = Quaternion.LookRotation(transform.forward, _targetDirection);
         Quaternion rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, _rotationSpeed * Time.deltaTime);
 
-        _rigidbody.SetRotation(rotation);  
+        _rigidbody.SetRotation(rotation); // Cập nhật góc quay của Rigidbody2D
     }
 
     private void SetVelocity()
     {
-
-            _rigidbody.velocity = transform.up * _speed;  // Sửa chính tả thành velocity
-
+        // Cập nhật vận tốc theo hướng hiện tại và tốc độ
+        _rigidbody.velocity = transform.up * _speed;
     }
 }

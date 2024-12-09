@@ -4,20 +4,18 @@ using UnityEngine;
 
 public class SpawnItem : MonoBehaviour
 {
-   [Header("Spawn Settings")]
+    [Header("Spawn Settings")]
     public GameObject objectToSpawn;        // Đối tượng cần spawn (Prefab)
     public float spawnInterval = 2f;        // Khoảng thời gian giữa các lần spawn (giây)
-    public int maxSpawnCount = 10;          // Số lượng tối đa đối tượng được spawn
-    public int spawnAmount = 1;             // Số lượng đối tượng spawn mỗi lần
-
+    public int maxSpawnCount = 5;           // Số lượng tối đa đối tượng được spawn
     public Transform spawnArea;             // Khu vực spawn (A1)
     public Transform noSpawnArea;           // Khu vực không spawn (A2)
 
     private BoxCollider spawnAreaCollider;  // Box Collider của khu vực spawn
     private BoxCollider noSpawnAreaCollider; // Box Collider của khu vực không spawn
 
-    private int spawnCount = 0;             // Đếm số lượng đối tượng đã spawn
-    private float timeSinceLastSpawn = 0f;  // Thời gian đã trôi qua từ lần spawn trước
+    private List<GameObject> activeObjects = new List<GameObject>(); // Danh sách các đối tượng hiện tại
+    private float timeSinceLastSpawn = 0f;  // Bộ đếm thời gian cho việc spawn
 
     [Header("Audio Settings")]
     public AudioClip spawnSound;            // Âm thanh phát khi spawn
@@ -33,64 +31,63 @@ public class SpawnItem : MonoBehaviour
 
     void Update()
     {
-        // Kiểm tra nếu đạt số lượng tối đa
-        if (spawnCount >= maxSpawnCount)
-            return;
+        // Loại bỏ các đối tượng đã bị tiêu diệt khỏi danh sách
+        activeObjects.RemoveAll(obj => obj == null);
 
-        // Tăng thời gian đếm ngược
-        timeSinceLastSpawn += Time.deltaTime;
-
-        // Kiểm tra nếu đã đến thời gian spawn mới
-        if (timeSinceLastSpawn >= spawnInterval)
+        // Kiểm tra nếu cần spawn thêm đối tượng
+        if (activeObjects.Count < maxSpawnCount)
         {
-            SpawnObjects();
-            timeSinceLastSpawn = 0f; // Đặt lại bộ đếm sau mỗi lần spawn
+            // Tăng bộ đếm thời gian
+            timeSinceLastSpawn += Time.deltaTime;
+
+            // Spawn khi đủ thời gian
+            if (timeSinceLastSpawn >= spawnInterval)
+            {
+                SpawnObject();
+                timeSinceLastSpawn = 0f; // Đặt lại bộ đếm
+            }
         }
     }
 
-    void SpawnObjects()
+    void SpawnObject()
     {
-        // Spawn nhiều đối tượng mỗi lần
-        for (int i = 0; i < spawnAmount; i++)
+        Vector3 spawnPosition;
+
+        do
         {
-            Vector3 spawnPosition;
+            // Tạo vị trí ngẫu nhiên trong khu vực spawn từ Box Collider
+            spawnPosition = new Vector3(
+                Random.Range(spawnAreaCollider.bounds.min.x, spawnAreaCollider.bounds.max.x),
+                Random.Range(spawnAreaCollider.bounds.min.y, spawnAreaCollider.bounds.max.y),
+                Random.Range(spawnAreaCollider.bounds.min.z, spawnAreaCollider.bounds.max.z)
+            );
+        }
+        // Kiểm tra nếu spawnPosition rơi vào khu vực không spawn
+        while (noSpawnAreaCollider.bounds.Contains(spawnPosition));
 
-            do
-            {
-                // Tạo vị trí ngẫu nhiên trong khu vực spawn từ Box Collider
-                spawnPosition = new Vector3(
-                    Random.Range(spawnAreaCollider.bounds.min.x, spawnAreaCollider.bounds.max.x),
-                    Random.Range(spawnAreaCollider.bounds.min.y, spawnAreaCollider.bounds.max.y),
-                    Random.Range(spawnAreaCollider.bounds.min.z, spawnAreaCollider.bounds.max.z)
-                );
-            }
-            // Kiểm tra nếu spawnPosition rơi vào khu vực không spawn
-            while (noSpawnAreaCollider.bounds.Contains(spawnPosition));
+        // Spawn đối tượng tại vị trí spawnPosition
+        GameObject spawnedObject = Instantiate(objectToSpawn, spawnPosition, Quaternion.identity);
 
-            // Spawn đối tượng tại vị trí spawnPosition
-            Instantiate(objectToSpawn, spawnPosition, Quaternion.identity);
+        // Thêm đối tượng spawn vào danh sách
+        activeObjects.Add(spawnedObject);
 
-            // Phát âm thanh khi spawn
-            if (audioSource != null && spawnSound != null)
-            {
-                audioSource.PlayOneShot(spawnSound); // Phát âm thanh spawn
-            }
-
-            // Tăng đếm số lượng đối tượng đã spawn
-            spawnCount++;
+        // Phát âm thanh khi spawn
+        if (audioSource != null && spawnSound != null)
+        {
+            audioSource.PlayOneShot(spawnSound); // Phát âm thanh spawn
         }
     }
 
     void OnDrawGizmosSelected()
     {
         // Vẽ khu vực spawn và không spawn để dễ quan sát trong Scene
-        if (spawnAreaCollider != null)
+        if (spawnArea != null && spawnAreaCollider != null)
         {
             Gizmos.color = Color.green;
             Gizmos.DrawWireCube(spawnArea.position, spawnAreaCollider.size); // Vẽ khu vực spawn
         }
 
-        if (noSpawnAreaCollider != null)
+        if (noSpawnArea != null && noSpawnAreaCollider != null)
         {
             Gizmos.color = Color.red;
             Gizmos.DrawWireCube(noSpawnArea.position, noSpawnAreaCollider.size); // Vẽ khu vực không spawn

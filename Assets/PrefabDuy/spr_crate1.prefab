@@ -101,19 +101,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lootItems:
   - prefab: {fileID: 6092053321920623051, guid: 1fb68e27bc8b69c4480f3521801b5fbb, type: 3}
-    dropChance: 0.5
+    dropChance: 0.15
   - prefab: {fileID: 490299754462717884, guid: cbeb0d7ba26bc054499e4d07e39cbb25, type: 3}
-    dropChance: 0.5
+    dropChance: 0.15
   - prefab: {fileID: 2228193971422941920, guid: de011f9a3efde5648afa0e8b859c8cf6, type: 3}
-    dropChance: 0.5
+    dropChance: 0.15
   - prefab: {fileID: 5257625482117162584, guid: 222ecee60652ea6449861f97c38c033b, type: 3}
-    dropChance: 0.25
+    dropChance: 0.2
   dropDistance: 1
   health: 10
   damage: 5
   damageSound: {fileID: 8300000, guid: f17bac10ee4c44148a1e9088e7540c55, type: 3}
   deathSound: {fileID: 8300000, guid: f17bac10ee4c44148a1e9088e7540c55, type: 3}
-  damagedColor: {r: 1, g: 1, b: 1, a: 1}
+  damagedColor: {r: 1, g: 0.7529412, b: 0, a: 1}
 --- !u!61 &7552680574598391780
 BoxCollider2D:
   m_ObjectHideFlags: 0
