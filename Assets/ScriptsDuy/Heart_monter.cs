@@ -39,7 +39,7 @@ public class Heart_monter : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") && canDamage)
+        if (collision.gameObject.CompareTag("Sword") || collision.gameObject.CompareTag("Arrow") && canDamage)
         {
             TakeDamage(damage); // Gọi hàm giảm máu
         }

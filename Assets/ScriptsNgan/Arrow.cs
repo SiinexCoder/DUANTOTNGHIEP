@@ -1,10 +1,12 @@
 using UnityEngine;
 using System.Collections;
 
+
 public class Arrow : MonoBehaviour
 {
     public float arrowDamage = 20f; // Sát thương của mũi tên
     public float destroyAfterTime = 5f; // Thời gian mũi tên sẽ tự hủy sau khi bắn (5 giây)
+  
 
     private void Start()
     {
@@ -12,19 +14,13 @@ public class Arrow : MonoBehaviour
         StartCoroutine(DestroyArrowAfterTime(destroyAfterTime));
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    public void OnCollisionEnter2D(Collider2D collision)
     {
-        if (other.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Enemy"))
         {
-            // Gây sát thương cho quái vật
-            EnemyController enemy = other.GetComponent<EnemyController>();
-            if (enemy != null)
-            {
-                enemy.TakeDamage(arrowDamage);
-            }
-
             // Hủy mũi tên sau khi va chạm
             Destroy(gameObject); // Hủy mũi tên, không hủy nhân vật!
+            
         }
     }
 

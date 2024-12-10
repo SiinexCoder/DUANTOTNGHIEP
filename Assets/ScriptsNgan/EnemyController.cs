@@ -15,6 +15,7 @@ public class EnemyController : MonoBehaviour
             Die(); // Quái vật chết khi máu còn 0
         }
     }
+    
 
     // Phương thức chết của quái vật
     void Die()

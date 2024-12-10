@@ -8,4 +8,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Inventory System - Kinnly/Scenes/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/Scenes/Backup Scene 1.unity
+    guid: 6d2bccd4ecc831340be05fe047a82b57
+  - enabled: 1
+    path: Assets/Scenes/Backup Scene 2.unity
+    guid: aa8824aae555aea4587a7fd5460b631c
+  - enabled: 1
+    path: Assets/Scenes/Backup Scene 3.unity
+    guid: fd1ccd459a7baa445be6a3f6150747b1
+  - enabled: 1
+    path: Assets/Scenes/Backup Scene 4.unity
+    guid: 6c6db03db3df3b14997a9d527033b344
   m_configObjects: {}

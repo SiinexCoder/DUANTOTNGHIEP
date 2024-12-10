@@ -16,10 +16,8 @@ public class ItemPickup : MonoBehaviour
             {
                 inventoryUI.UpdateUI(); // Cập nhật UI nếu có
             }
-            else
-            {
-                Debug.LogError("InventoryUI not assigned in ItemPickup!"); // Kiểm tra lỗi nếu chưa có UI
-            }
+            
+           
 
             Destroy(gameObject); // Xóa item khỏi scene sau khi nhặt
         }

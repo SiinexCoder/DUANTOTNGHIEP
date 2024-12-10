@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2895663153898177961}
   - component: {fileID: 5733322570434645843}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,17 +93,18 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4602263572574399832}
+  - component: {fileID: 4427553749641518798}
+  - component: {fileID: 616298038972503557}
+  - component: {fileID: 3125143015682585608}
   - component: {fileID: 2357857481808033994}
-  - component: {fileID: 7606015672109117488}
-  - component: {fileID: 8221074288020067682}
-  - component: {fileID: 3893841077375610345}
   - component: {fileID: 4395178186750025767}
   - component: {fileID: 8122738390960762205}
   - component: {fileID: 3512402150285319464}
   - component: {fileID: 6042151258700748221}
-  m_Layer: 0
+  - component: {fileID: 4529200017906668363}
+  m_Layer: 6
   m_Name: Zombie_1
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -117,13 +118,71 @@ Transform:
   m_GameObject: {fileID: 5257625482117162584}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.003275526, z: -0, w: 0.99999464}
-  m_LocalPosition: {x: -2.23, y: -5.19, z: 0.07}
+  m_LocalPosition: {x: -108.411964, y: 79.75241, z: 0.07}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2895663153898177961}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0.375, z: 0}
+--- !u!114 &4427553749641518798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5257625482117162584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da7a6f5383b1b6a4aa1cb3c231cd1263, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 1
+  _rotationSpeed: 100
+  _screenBorder: -30
+  _obstacleCheckCircleRadius: 0.5
+  _obstacleCheckDistance: 1
+  _obstacleLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+--- !u!114 &616298038972503557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5257625482117162584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b936be224b81084ab4c06ff2ccd35a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerAwarenessDistance: 5
+--- !u!114 &3125143015682585608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5257625482117162584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 357cd399fb904e24188dba30b8b23fd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lootItems:
+  - prefab: {fileID: 6674365105017686890, guid: b520b4cb0b7499341a45d73f4ac52fe8, type: 3}
+    dropChance: 0.25
+  - prefab: {fileID: 5498538856996660479, guid: 5541210e41f7c2b4e8b623e0ef242c67, type: 3}
+    dropChance: 0.25
+  - prefab: {fileID: 4462658858101218586, guid: 1f361c3f15611fe45a1f3d0933db91ea, type: 3}
+    dropChance: 0.25
+  dropDistance: 1
+  health: 10
+  damage: 5
+  damageSound: {fileID: 8300000, guid: a4366158371c9514cae30cfff454dcb2, type: 3}
+  deathSound: {fileID: 8300000, guid: e29d35a3561cf964e9c39f5b99c2696c, type: 3}
+  damagedColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!50 &2357857481808033994
 Rigidbody2D:
   serializedVersion: 4
@@ -150,67 +209,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!114 &7606015672109117488
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5257625482117162584}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da7a6f5383b1b6a4aa1cb3c231cd1263, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _speed: 1
-  _rotationSpeed: 100
-  _screenBorder: -30
-  _obstacleCheckCircleRadius: 0.46
-  _obstacleCheckDistance: 1
-  _obstacleLayerMask:
-    serializedVersion: 2
-    m_Bits: 1
---- !u!114 &8221074288020067682
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5257625482117162584}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b936be224b81084ab4c06ff2ccd35a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _playerAwarenessDistance: 5
---- !u!114 &3893841077375610345
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5257625482117162584}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 357cd399fb904e24188dba30b8b23fd9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lootItems:
-  - prefab: {fileID: 490299754462717884, guid: cbeb0d7ba26bc054499e4d07e39cbb25, type: 3}
-    dropChance: 0.25
-  - prefab: {fileID: 2228193971422941920, guid: de011f9a3efde5648afa0e8b859c8cf6, type: 3}
-    dropChance: 0.25
-  - prefab: {fileID: 6092053321920623051, guid: 1fb68e27bc8b69c4480f3521801b5fbb, type: 3}
-    dropChance: 0.25
-  - prefab: {fileID: 5257625482117162584}
-    dropChance: 0.1
-  dropDistance: 1
-  health: 10
-  damage: 5
-  damageSound: {fileID: 8300000, guid: a4366158371c9514cae30cfff454dcb2, type: 3}
-  deathSound: {fileID: 8300000, guid: ff8240148ee026c4babb53949381e1cd, type: 3}
-  damagedColor: {r: 1, g: 0, b: 0, a: 1}
+  m_Constraints: 4
 --- !u!58 &4395178186750025767
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -307,7 +306,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 4
   m_Sprite: {fileID: -227356341, guid: e28543eaf2b7d6148a6621d69b7391b7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -415,3 +414,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &4529200017906668363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5257625482117162584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68ecb02522c6e7d498d31eaad7973ded, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lootItems:
+  - prefab: {fileID: 4462658858101218586, guid: 1f361c3f15611fe45a1f3d0933db91ea, type: 3}
+    dropChance: 1
+  dropDistance: 1
+  health: 10
+  damage: 5
+  damageSound: {fileID: 8300000, guid: a4366158371c9514cae30cfff454dcb2, type: 3}
+  deathSound: {fileID: 8300000, guid: e29d35a3561cf964e9c39f5b99c2696c, type: 3}
+  damagedColor: {r: 1, g: 0, b: 0, a: 1}

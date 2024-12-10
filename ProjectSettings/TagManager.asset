@@ -8,6 +8,14 @@ TagManager:
   - Monter
   - Sword
   - Enemy
+  - Arrow
+  - HealingItem
+  - Gem
+  - Potion
+  - SecretItem
+  - DiamondBlue
+  - DiamondRed
+  - Leaf
   layers:
   - Default
   - TransparentFX
