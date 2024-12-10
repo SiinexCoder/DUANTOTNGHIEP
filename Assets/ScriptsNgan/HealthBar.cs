@@ -10,7 +10,7 @@ public class HealthBar : MonoBehaviour
 
    public void UpdateBar(int currentValue, int maxValue)
    {
-        fillBar.fillAmount = (float)currentValue / (float)maxValue;
-        valueText.text = currentValue.ToString() + " / " + maxValue.ToString(); 
+      fillBar.fillAmount = (float)currentValue / (float)maxValue;
+      valueText.text = currentValue.ToString() + " / " + maxValue.ToString();
    }
 }

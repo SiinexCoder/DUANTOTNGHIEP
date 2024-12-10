@@ -12,10 +12,12 @@ TagManager:
   - HealingItem
   - Gem
   - Potion
-  - SecretItem
-  - DiamondBlue
-  - DiamondRed
   - Leaf
+  - Healing
+  - Diamond Red
+  - Diamond Blue
+  - Secret Item
+  - Treasure Chest
   layers:
   - Default
   - TransparentFX

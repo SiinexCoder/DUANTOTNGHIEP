@@ -1,39 +1,34 @@
 using UnityEngine;
-using System.Collections.Generic; 
 using System.Collections;
-
 
 public class PlayerController : MonoBehaviour
 {
-    public float moveSpeed = 5f; // Tốc độ di chuyển
-    private Vector2 moveDirection; // Hướng di chuyển
-    private Vector3 targetPosition; // Vị trí mục tiêu
-    private bool isMoving = false; // Trạng thái di chuyển
-    private Animator animator; // Animator của nhân vật
-    private AudioSource footstepAudio; // Âm thanh bước chân
-
-    public GameObject sword; // Kiếm
-    public GameObject bow;   // Cung
-    private bool isUsingBow = false; // Trạng thái vũ khí hiện tại
+    public float moveSpeed = 5f;
+    private Vector2 moveDirection;
+    private Vector3 targetPosition;
+    private bool isMoving = false;
+    private Animator animator;
+    private AudioSource footstepAudio;
+    public GameObject sword;
+    public GameObject bow;
+    private bool isUsingBow = false;
     public QuestManager questManager;
-    public ParticleSystem runDustEffect; // Tham chiếu đến hiệu ứng bụi
+    public ParticleSystem runDustEffect;
+    private PlayerAttack playerAttack;
+    private bool isNearTreasureChest = false;  // Kiểm tra nếu nhân vật gần rương kho báu
+    private GameObject nearbyTreasureChest;  // Đối tượng rương kho báu gần nhất
 
-    private PlayerAttack playerAttack; // Tham chiếu đến PlayerAttack
-
-    
 
     void Start()
     {
         animator = GetComponent<Animator>();
         footstepAudio = GetComponent<AudioSource>();
-        playerAttack = GetComponent<PlayerAttack>(); // Lấy tham chiếu PlayerAttack
-
-        EquipSword(); // Mặc định sử dụng kiếm
+        playerAttack = GetComponent<PlayerAttack>();
+        EquipSword();
     }
 
     void Update()
     {
-        // Kiểm tra chuột phải để di chuyển
         if (Input.GetMouseButtonDown(1))
         {
             targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -42,25 +37,19 @@ public class PlayerController : MonoBehaviour
             isMoving = true;
         }
 
-        // Kiểm tra nếu đã tới vị trí mục tiêu
         if (isMoving && Vector2.Distance(transform.position, targetPosition) < 0.1f)
         {
             isMoving = false;
         }
 
-        // Xoay nhân vật
         if (isMoving)
         {
             RotatePlayer(targetPosition);
         }
 
-        // Phát âm thanh bước chân
         HandleFootstepSound();
-
-        // Cập nhật Animator
         animator.SetBool("isRunning", isMoving);
 
-        // Đổi vũ khí với phím Q
         if (Input.GetKeyDown(KeyCode.Q))
         {
             if (isUsingBow)
@@ -69,16 +58,54 @@ public class PlayerController : MonoBehaviour
                 EquipBow();
         }
 
-        // Tấn công bằng cung
-        if (Input.GetMouseButtonDown(0) && isUsingBow) // Bắn mũi tên
+        if (Input.GetMouseButtonDown(0) && isUsingBow)
         {
             if (playerAttack != null)
             {
-                playerAttack.ShootArrow(); // Gọi hàm bắn mũi tên từ PlayerAttack
+                playerAttack.ShootArrow();
             }
         }
-        
+        if (Input.GetKeyDown(KeyCode.F) && isNearTreasureChest)
+        {
+            OpenTreasureChest();  // Gọi phương thức mở rương
+        }
     }
+    void OpenTreasureChest()
+{
+    if (questManager != null)
+    {
+        // Cập nhật tiến trình nhiệm vụ "Tìm kiếm kho báu"
+        questManager.UpdateQuestProgress("Tìm kiếm kho báu", 1);
+
+        // Thực hiện hành động mở rương (ví dụ, ẩn rương, phát hiệu ứng, v.v.)
+        if (nearbyTreasureChest != null)
+        {
+            // Thêm các item thuốc vào inventory
+            AddPotionItemsToInventory();
+
+            // Xóa rương kho báu
+            Destroy(nearbyTreasureChest);  // Xóa rương kho báu
+            Debug.Log("Rương kho báu đã được mở!");
+        }
+    }
+}
+
+void AddPotionItemsToInventory()
+{
+    // Tạo các item thuốc hồi máu và thuốc tăng tốc
+    HealingItem healingItem = new HealingItem();  // Bạn cần phải thay thế HealingItem() bằng cách khởi tạo đúng item
+    SpeedPotion speedPotion = new SpeedPotion();  // Cũng tương tự cho SpeedPotion
+
+    // Thêm các item vào inventory
+    Inventory inventory = FindObjectOfType<Inventory>();
+    if (inventory != null)
+    {
+        inventory.AddItem(healingItem);  // Thêm thuốc hồi máu vào inventory
+        inventory.AddItem(speedPotion);  // Thêm thuốc tăng tốc vào inventory
+    }
+}
+
+
 
     void FixedUpdate()
     {
@@ -91,97 +118,111 @@ public class PlayerController : MonoBehaviour
     void RotatePlayer(Vector3 targetPosition)
     {
         float direction = targetPosition.x - transform.position.x;
-        transform.localScale = new Vector3(direction > 0 ? 1 : -1, 1, 1); // Quay trái/phải
+        transform.localScale = new Vector3(direction > 0 ? 1 : -1, 1, 1);
     }
 
-    // Xử lý âm thanh bước chân
     void HandleFootstepSound()
     {
+        // Kiểm tra nếu nhân vật đang di chuyển và hiệu ứng bụi chưa được bật
         if (isMoving)
         {
-            if (!footstepAudio.isPlaying) footstepAudio.Play();
-            if (!runDustEffect.isPlaying) runDustEffect.Play(); // Bật hiệu ứng bụi
+            if (!footstepAudio.isPlaying)
+                footstepAudio.Play();
+            if (!runDustEffect.isPlaying) // Bật hiệu ứng bụi khi di chuyển
+                runDustEffect.Play();
         }
         else
         {
-            if (footstepAudio.isPlaying) footstepAudio.Stop();
-            if (runDustEffect.isPlaying) runDustEffect.Stop(); // Tắt hiệu ứng bụi
+            // Nếu không di chuyển, tắt âm thanh và hiệu ứng bụi
+            if (footstepAudio.isPlaying)
+                footstepAudio.Stop();
+            if (runDustEffect.isPlaying) // Tắt hiệu ứng bụi khi không di chuyển
+                runDustEffect.Stop();
         }
     }
 
-    void EquipSword()
+
+    public void EquipSword()
     {
+        sword.SetActive(true);
+        bow.SetActive(false);
         isUsingBow = false;
-        sword.SetActive(true); // Bật kiếm
-        bow.SetActive(false);  // Tắt cung
-        animator.SetBool("isUsingBow", false); // Cập nhật Animator
+        animator.SetBool("isUsingBow", false);
     }
 
-    void EquipBow()
+    public void EquipBow()
     {
+        sword.SetActive(false);
+        bow.SetActive(true);
         isUsingBow = true;
-        sword.SetActive(false); // Tắt kiếm
-        bow.SetActive(true);    // Bật cung
-        animator.SetBool("isUsingBow", true); // Cập nhật Animator
+        animator.SetBool("isUsingBow", true);
     }
-void OnCollisionEnter2D(Collision2D collision)
-{
-    if (collision.gameObject.CompareTag("Enemy"))
-    {
-        // Giảm máu nhân vật
-        PlayerHealth playerHealth = GetComponent<PlayerHealth>();
-        if (playerHealth != null)
-        {
-            playerHealth.TakeDamage(10); // Ví dụ: giảm 10 máu
-        }
-
-        // Kích hoạt animation bị thương
-        Animator animator = GetComponent<Animator>();
-        if (animator != null)
-        {
-            animator.SetTrigger("Hurt"); // Giả sử bạn đã tạo trigger "Hurt" trong Animator
-        }
-    }
-}
-
-
-    
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        // Truy cập danh sách nhiệm vụ của scene hiện tại thông qua questManager
-        List<QuestManager.Quest> currentQuests = questManager.currentSceneQuests;
-
-        // Kiểm tra danh sách nhiệm vụ có phần tử không
-        if (currentQuests.Count > 0)
+        if (other.CompareTag("Treasure Chest"))
         {
-            if (other.CompareTag("DiamondBlue"))
-            {
-                Destroy(other.gameObject);
-                questManager.UpdateQuestProgress("Thu thập kim cương xanh", currentQuests[0].currentItemCount + 1);
-            }
-            if (other.CompareTag("DiamondRed"))
-            {
-                Destroy(other.gameObject);
-                questManager.UpdateQuestProgress("Thu thập kim cương đỏ", currentQuests[1].currentItemCount + 1);
-            }
-            else if (other.CompareTag("SecretItem"))
-            {
-                Destroy(other.gameObject);
-                questManager.UpdateQuestProgress("Tìm vật phẩm bí ẩn", currentQuests[2].currentItemCount + 1);
-            }else if (other.CompareTag("Leaf"))
-            {
-                Destroy(other.gameObject);
-                questManager.UpdateQuestProgress("Thu thập lá thuốc", currentQuests[3].currentItemCount + 1);
-            }
-            // Thêm các điều kiện cho các nhiệm vụ khác tại đây
+            isNearTreasureChest = true;
+            nearbyTreasureChest = other.gameObject;  // Lưu đối tượng rương kho báu
+        }
+        if (other.CompareTag("Diamond Blue"))
+        {
+            Destroy(other.gameObject);
+            questManager.UpdateQuestProgress("Nhặt kim cương xanh", 1);
+        }
+        if (other.CompareTag("Diamond Red"))
+        {
+            Destroy(other.gameObject);
+            questManager.UpdateQuestProgress("Nhặt kim cương đỏ", 1);
+        }
+        if (other.CompareTag("Secret Item"))
+        {
+            Destroy(other.gameObject);
+            questManager.UpdateQuestProgress("Nhặt vật phẩm bí ẩn", 1);
+        }
+        if (other.CompareTag("Leaf"))
+        {
+            Destroy(other.gameObject);
+            questManager.UpdateQuestProgress("Nhặt lá thuốc", 1);
+        }
+        if (other.CompareTag("Potion"))
+        {
+            Destroy(other.gameObject);
+            questManager.UpdateQuestProgress("Nhặt bình thuốc", 1);
+        }
+        if (other.CompareTag("Healing"))
+        {
+            Destroy(other.gameObject);
+            questManager.UpdateQuestProgress("Nhặt thuốc hồi phục", 1);
+        }
+
+    }
+    void OnTriggerExit2D(Collider2D other)
+    {
+        // Kiểm tra khi người chơi ra khỏi khu vực rương kho báu
+        if (other.CompareTag("Treasure Chest"))
+        {
+            isNearTreasureChest = false;
+            nearbyTreasureChest = null;
         }
     }
-    
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            PlayerHealth playerHealth = GetComponent<PlayerHealth>();
+            if (playerHealth != null)
+            {
+                playerHealth.TakeDamage(10);
+            }
+
+            Animator animator = GetComponent<Animator>();
+            if (animator != null)
+            {
+                animator.SetTrigger("Hurt");
+            }
+
+        }
+    }
 }
-
-
-
-
-
-

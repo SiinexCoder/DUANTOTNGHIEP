@@ -25,6 +25,12 @@ public class Heart_monter : MonoBehaviour
     public Color damagedColor = Color.red; // Màu khi bị sát thương
     private Color originalColor; // Lưu màu ban đầu
 
+    private QuestManager questManager; // Tham chiếu đến QuestManager
+
+    public string questName = "Giết quái vật"; // Tên nhiệm vụ liên quan
+
+    public int enemyValue = 1; // Số lượng quái vật đóng góp cho nhiệm vụ
+
     private void Start()
     {
         animator = GetComponent<Animator>(); // Lấy Animator từ chính GameObject này
@@ -35,6 +41,8 @@ public class Heart_monter : MonoBehaviour
         {
             originalColor = spriteRenderer.color; // Lưu màu ban đầu
         }
+
+        questManager = FindObjectOfType<QuestManager>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -45,7 +53,7 @@ public class Heart_monter : MonoBehaviour
         }
     }
 
-    private void TakeDamage(int amount)
+    public void TakeDamage(int amount)
     {
         health -= amount; // Trừ máu
 
@@ -72,7 +80,6 @@ public class Heart_monter : MonoBehaviour
 
     private void Die()
     {
-       
 
         // Phát âm thanh khi chết
         if (audioSource != null && deathSound != null)
@@ -86,9 +93,14 @@ public class Heart_monter : MonoBehaviour
             animator.SetTrigger("OnDied");
         }
 
+
         DropLoot();
+        if (questManager != null)
+        {
+            questManager.UpdateQuestProgress(questName, enemyValue); // Cập nhật nhiệm vụ giết quái vật
+        }
         // Phá hủy game object sau khi chạy animation (tùy ý)
-        Destroy(gameObject, 0.4f); // Để 1 giây trước khi xóa quái (hoặc chỉnh sửa tùy ý)
+        Destroy(gameObject, 0.1f); // Để 1 giây trước khi xóa quái (hoặc chỉnh sửa tùy ý)
     }
 
     private IEnumerator ResetDamageAbility()
