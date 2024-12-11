@@ -21,6 +21,11 @@ public class QuestManager : MonoBehaviour
     public GameObject questPanel;
     public TMPro.TMP_Text questText;
     private bool isPanelActive = false;
+
+    public GameObject EndGamePanel;
+
+    public TMPro.TMP_Text EndGameText;
+
     public GameObject victoryPanel;  // Panel Chúc mừng
     public TMPro.TMP_Text victoryText; // Text hiển thị thông báo và đếm ngược
 
@@ -53,10 +58,11 @@ public class QuestManager : MonoBehaviour
 
     questsByScene.Add("Backup Scene 4", new List<Quest>
     {
-        new Quest { questName = "Giải cứu công chúa", description = "Giải cứu công chúa", requiredItemCount = 1, currentItemCount = 0, isCompleted = false },
-        new Quest { questName = "Đánh bại trùm", description = "Đánh bại trùm cuối", requiredItemCount = 1, currentItemCount = 0, isCompleted = false },
-        new Quest { questName = "Thu thập vũ khí mạnh", description = "Thu thập 1 thanh vũ khí mạnh", requiredItemCount = 1, currentItemCount = 0, isCompleted = false },
-        new Quest { questName = "Chạy thoát", description = "Thoát khỏi hang động", requiredItemCount = 1, currentItemCount = 0, isCompleted = false }
+        new Quest { questName = "Nhặt kim cương xanh", description = "Thu thập 5 kim cương xanh.", requiredItemCount = 1, currentItemCount = 0, isCompleted = false },
+    });
+     questsByScene.Add("Boss", new List<Quest>
+    {
+        new Quest { questName = "Nhặt thuốc giải", description = "Thu thập thuốc giải độc.", requiredItemCount = 1, currentItemCount = 0, isCompleted = false },
     });
 
     victoryPanel.SetActive(false); // Ẩn panel chúc mừng khi bắt đầu
@@ -118,7 +124,7 @@ public class QuestManager : MonoBehaviour
     }
 
     public IEnumerator ShowCompletionNotification()
-    {
+    {   
         victoryPanel.SetActive(true);
         victoryText.text = "Nhiệm vụ hoàn thành! Chuyển cảnh sau 3 giây...";
 
@@ -133,6 +139,7 @@ public class QuestManager : MonoBehaviour
         string currentScene = SceneManager.GetActiveScene().name;
         if (currentScene == "Backup Scene 1")
         {
+         
             SceneManager.LoadScene("Backup Scene 2");
         }
         else if (currentScene == "Backup Scene 2")
@@ -143,8 +150,15 @@ public class QuestManager : MonoBehaviour
         {
             SceneManager.LoadScene("Backup Scene 4");
         }
+        else if (currentScene == "Backup Scene 4")
+        {
+         
+            SceneManager.LoadScene("Boss");
+        }
         else
         {
+            EndGamePanel.SetActive(true);
+            EndGameText.text = "Nhiệm vụ hoàn thành!";
             Debug.Log("Chúc mừng bạn đã hoàn thành trò chơi!");
         }
     }

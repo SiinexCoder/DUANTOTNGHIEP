@@ -195,6 +195,11 @@ void AddPotionItemsToInventory()
             Destroy(other.gameObject);
             questManager.UpdateQuestProgress("Nhặt thuốc hồi phục", 1);
         }
+        if (other.CompareTag("Antidote"))
+        {
+            Destroy(other.gameObject);
+            questManager.UpdateQuestProgress("Nhặt thuốc giải", 1);
+        }
 
     }
     void OnTriggerExit2D(Collider2D other)

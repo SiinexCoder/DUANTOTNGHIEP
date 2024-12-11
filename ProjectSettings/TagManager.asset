@@ -18,6 +18,10 @@ TagManager:
   - Diamond Blue
   - Secret Item
   - Treasure Chest
+  - DiamondBlue
+  - DiamondRed
+  - SecretItem
+  - Antidote
   layers:
   - Default
   - TransparentFX

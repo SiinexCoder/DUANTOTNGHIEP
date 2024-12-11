@@ -81,7 +81,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 4
   m_Sprite: {fileID: -227356341, guid: e28543eaf2b7d6148a6621d69b7391b7, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.32244205, g: 0.9547169, b: 0.919597, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -159,6 +159,8 @@ MonoBehaviour:
   damageSound: {fileID: 8300000, guid: a4366158371c9514cae30cfff454dcb2, type: 3}
   deathSound: {fileID: 8300000, guid: ff8240148ee026c4babb53949381e1cd, type: 3}
   damagedColor: {r: 1, g: 0, b: 0, a: 1}
+  questName: "Gi\u1EBFt qu\xE1i v\u1EADt"
+  enemyValue: 1
 --- !u!50 &1832815257869916612
 Rigidbody2D:
   serializedVersion: 4
