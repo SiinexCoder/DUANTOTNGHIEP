@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 7177483121035310535}
   - component: {fileID: 5875451453330344859}
   - component: {fileID: 2106673513544070091}
-  - component: {fileID: 4561322200770778174}
   m_Layer: 0
   m_Name: Stamina Globe (3)
   m_TagString: Untagged
@@ -121,17 +120,3 @@ CircleCollider2D:
   m_Offset: {x: -0.0049324036, y: 0}
   serializedVersion: 2
   m_Radius: 0.14009476
---- !u!114 &4561322200770778174
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5444574696173709027}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98310d52d7305684882ce637b689e2e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: 3fcb3a740b772a04d81ac4cfe203da74, type: 2}
-  inventoryUI: {fileID: 0}

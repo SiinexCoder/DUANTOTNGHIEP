@@ -11,12 +11,6 @@ public class Inventory : MonoBehaviour
     private float speedPotionCooldown = 0f; // Thời gian cooldown của thuốc tăng tốc
     private bool isSpeedPotionActive = false; // Kiểm tra xem thuốc tăng tốc có đang hoạt động không
 
-    void Start()
-    {
-        // Đảm bảo gọi UpdateSlots để cập nhật UI ban đầu
-        UpdateSlots();
-    }
-
     private void Update()
     {
         // Cập nhật thời gian cooldown

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SpeedItem
   m_EditorClassIdentifier: 
   itemName: SpeedItem
-  icon: {fileID: 21300000, guid: 74b2c24f2f6cdf74d999b8672f6e9d34, type: 3}
+  icon: {fileID: 21300000, guid: 5e8a540b616ee9e458a5590edafff961, type: 3}
   isStackable: 1
   speedBoostAmount: 5
   duration: 5

@@ -80,8 +80,6 @@ public class PlayerController : MonoBehaviour
         // Thực hiện hành động mở rương (ví dụ, ẩn rương, phát hiệu ứng, v.v.)
         if (nearbyTreasureChest != null)
         {
-            // Thêm các item thuốc vào inventory
-            AddPotionItemsToInventory();
 
             // Xóa rương kho báu
             Destroy(nearbyTreasureChest);  // Xóa rương kho báu
@@ -89,22 +87,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 }
-
-void AddPotionItemsToInventory()
-{
-    // Tạo các item thuốc hồi máu và thuốc tăng tốc
-    HealingItem healingItem = new HealingItem();  // Bạn cần phải thay thế HealingItem() bằng cách khởi tạo đúng item
-    SpeedPotion speedPotion = new SpeedPotion();  // Cũng tương tự cho SpeedPotion
-
-    // Thêm các item vào inventory
-    Inventory inventory = FindObjectOfType<Inventory>();
-    if (inventory != null)
-    {
-        inventory.AddItem(healingItem);  // Thêm thuốc hồi máu vào inventory
-        inventory.AddItem(speedPotion);  // Thêm thuốc tăng tốc vào inventory
-    }
-}
-
 
 
     void FixedUpdate()
