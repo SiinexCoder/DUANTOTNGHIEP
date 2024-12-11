@@ -118,7 +118,7 @@ public class Inventory : MonoBehaviour
             Debug.LogWarning("Không có vật phẩm tăng tốc trong inventory.");
             return;
         }
-
+    
         SpeedPotion speedPotion = speedPotionStack.item as SpeedPotion;
         PlayerController playerController = FindObjectOfType<PlayerController>();
         if (playerController != null)

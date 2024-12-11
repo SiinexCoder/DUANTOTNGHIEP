@@ -4,11 +4,6 @@ using System.Collections;
 
 public class MenuManager : MonoBehaviour
 {
-    void Awake()
-{
-    // Đảm bảo rằng MenuManager không bị phá hủy khi chuyển cảnh
-    DontDestroyOnLoad(gameObject);
-}   
     public void StartGame()
     {
         // Chuyển đến scene trò chơi đầu tiên
@@ -24,7 +19,7 @@ public class MenuManager : MonoBehaviour
     public IEnumerator EndGameAndReturnToMenu()
     {
         // Sau khi hoàn thành trò chơi, chuyển về MainMenu
-        yield return new WaitForSeconds(3f); // Đợi 3 giây
+        yield return new WaitForSeconds(1f); 
         SceneManager.LoadScene("MenuScene");
     }
 }

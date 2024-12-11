@@ -158,8 +158,7 @@ public class QuestManager : MonoBehaviour
         }
         else if (currentScene == "Boss")
         {
-            yield return new WaitForSeconds(3f);
-
+            // yield return new WaitForSeconds(3f);
             // Kiểm tra MenuManager có tồn tại không trước khi gọi hàm
             MenuManager menuManager = FindObjectOfType<MenuManager>();
             if (menuManager != null)
