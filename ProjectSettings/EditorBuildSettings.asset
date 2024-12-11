@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Inventory System - Kinnly/Scenes/SampleScene.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
+    path: Assets/Scenes/MenuScene.unity
+    guid: 7fc642c792572024780aa6366f58c6d3
   - enabled: 1
     path: Assets/Scenes/Backup Scene 1.unity
     guid: 6d2bccd4ecc831340be05fe047a82b57
@@ -23,7 +23,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Boss.unity
     guid: e2e673ec08af89d4580f9d91150958d3
-  - enabled: 1
-    path: Assets/Scenes/MenuScene.unity
-    guid: 7fc642c792572024780aa6366f58c6d3
   m_configObjects: {}
