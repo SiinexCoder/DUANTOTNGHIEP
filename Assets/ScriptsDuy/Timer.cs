@@ -25,6 +25,8 @@ public class TimeCycle : MonoBehaviour
     private Color midnightColor = Color.black;   // Màu đen
     private Color dawnColor = Color.white;       // Màu trắng (bình minh)
 
+    public GameObject TimePanel;
+
     void Update()
     {
         elapsedTime += Time.deltaTime;
@@ -36,12 +38,14 @@ public class TimeCycle : MonoBehaviour
 
         if (cycleTime < dayDuration) // Thời gian ban ngày
         {
+            TimePanel.SetActive(false);
             isNight = false;
             cycleText.text = "Ban ngày";
             UpdateDayColors(cycleTime / dayDuration); // Tính tỉ lệ ban ngày
         }
         else // Thời gian ban đêm
-        {
+        {   
+            TimePanel.SetActive(true);
             isNight = true;
             cycleText.text = "Ban đêm";
             UpdateNightColors((cycleTime - dayDuration) / nightDuration); // Tính tỉ lệ ban đêm

@@ -14,7 +14,7 @@ public class QuestManager : MonoBehaviour
         public int requiredItemCount;
         public int currentItemCount;
     }
-
+    
     public Dictionary<string, List<Quest>> questsByScene = new Dictionary<string, List<Quest>>(); // Lưu trữ nhiệm vụ theo từng scene
     public List<Quest> currentSceneQuests = new List<Quest>(); // Nhiệm vụ của scene hiện tại
 
