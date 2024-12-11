@@ -3402,8 +3402,8 @@ MonoBehaviour:
   timeBar: {fileID: 5592033842761294214}
   timerText: {fileID: 2888645601110506315}
   cycleText: {fileID: 4544161546445361236}
-  dayDuration: 5
-  nightDuration: 5
+  dayDuration: 50
+  nightDuration: 50
   TimePanel: {fileID: 0}
 --- !u!1 &7326620290965819845
 GameObject:
