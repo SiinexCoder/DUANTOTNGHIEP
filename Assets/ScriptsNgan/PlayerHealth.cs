@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -13,8 +15,15 @@ public class PlayerHealth : MonoBehaviour
 
     private Animator animator; // Tham chiếu Animator
 
+    public GameObject DiePanel;
+
+    public TMPro.TMP_Text DieText;
+
+    private bool isDead = false;
+
     private void Start()
-    {
+    {   
+        DiePanel.SetActive(false);
         currentHealth = maxHealth;
         healthBar.UpdateBar(currentHealth, maxHealth);
 
@@ -75,9 +84,32 @@ public class PlayerHealth : MonoBehaviour
         healthBar.UpdateBar(currentHealth, maxHealth);
     }
 
-    private void Die()
+    public void Die() 
+{
+    if (isDead) return;
+    isDead = true;
+
+    // Hiển thị bảng thông báo chết
+    DiePanel.SetActive(true);
+    if (DieText != null)
     {
-        Debug.Log("Player đã chết!");
-        Destroy(gameObject); // Hủy nhân vật
+        DieText.text = "Bạn đã chết! Quay lại menu sau 3 giây...";
     }
+
+    // Bắt đầu Coroutine chờ trước khi chuyển Scene
+    StartCoroutine(LoadMenuAfterDelay(3f));
+}
+
+private IEnumerator LoadMenuAfterDelay(float delay)
+{
+    Debug.Log($"Chờ {delay} giây trước khi chuyển về Menu.");
+    
+    // Chờ sử dụng WaitForSecondsRealtime để không bị ảnh hưởng bởi Time.timeScale
+    yield return new WaitForSecondsRealtime(delay);
+
+    Debug.Log("Chuyển về Menu.");
+    Time.timeScale = 1; // Khôi phục tốc độ thời gian
+    SceneManager.LoadScene("MenuScene"); // Chuyển về Menu Scene
+}
+
 }

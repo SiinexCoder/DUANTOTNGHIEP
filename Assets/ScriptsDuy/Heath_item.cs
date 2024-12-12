@@ -79,10 +79,10 @@ public class Heart_item : MonoBehaviour
         }
 
         // Gọi trigger "OnDied" trong Animator
-        if (animator != null)
-        {
-            animator.SetTrigger("OnDied");
-        }
+        // if (animator != null)
+        // {
+        //     animator.SetTrigger("OnDied");
+        // }
 
         DropLoot();
         // Phá hủy game object sau khi chạy animation (tùy ý)

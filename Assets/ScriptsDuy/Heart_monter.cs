@@ -27,10 +27,6 @@ public class Heart_monter : MonoBehaviour
 
     private QuestManager questManager; // Tham chiếu đến QuestManager
 
-    public string questName = "Giết quái vật"; // Tên nhiệm vụ liên quan
-
-    public int enemyValue = 1; // Số lượng quái vật đóng góp cho nhiệm vụ
-
     private void Start()
     {
         animator = GetComponent<Animator>(); // Lấy Animator từ chính GameObject này
@@ -95,10 +91,6 @@ public class Heart_monter : MonoBehaviour
 
 
         DropLoot();
-        if (questManager != null)
-        {
-            questManager.UpdateQuestProgress(questName, enemyValue); // Cập nhật nhiệm vụ giết quái vật
-        }
         // Phá hủy game object sau khi chạy animation (tùy ý)
         Destroy(gameObject, 0.1f); // Để 1 giây trước khi xóa quái (hoặc chỉnh sửa tùy ý)
     }

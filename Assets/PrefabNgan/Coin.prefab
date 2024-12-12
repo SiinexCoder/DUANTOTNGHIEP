@@ -11,13 +11,12 @@ GameObject:
   - component: {fileID: 3021594207838196795}
   - component: {fileID: 923636097786577390}
   - component: {fileID: 8764725536724529011}
-  - component: {fileID: 3298139516216307533}
   - component: {fileID: 501223691585235664}
   - component: {fileID: 4536166667161508120}
   - component: {fileID: 8454577507320733986}
   m_Layer: 0
   m_Name: Coin
-  m_TagString: Untagged
+  m_TagString: Coin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -110,25 +109,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &3298139516216307533
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4462658858101218586}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02189a08018c0864689adadfb005a9cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lootItems: []
-  dropDistance: 1
-  health: 10
-  damage: 10
-  damageSound: {fileID: 8300000, guid: c027eab7fc31f4d11879290bc0d534df, type: 3}
-  deathSound: {fileID: 8300000, guid: c027eab7fc31f4d11879290bc0d534df, type: 3}
-  damagedColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!61 &501223691585235664
 BoxCollider2D:
   m_ObjectHideFlags: 0

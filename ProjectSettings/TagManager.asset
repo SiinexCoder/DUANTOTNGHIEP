@@ -9,19 +9,17 @@ TagManager:
   - Sword
   - Enemy
   - Arrow
-  - HealingItem
-  - Gem
   - Potion
   - Leaf
-  - Healing
   - Diamond Red
   - Diamond Blue
   - Secret Item
   - Treasure Chest
-  - DiamondBlue
-  - DiamondRed
-  - SecretItem
   - Antidote
+  - Gem
+  - Healing
+  - Star
+  - Coin
   layers:
   - Default
   - TransparentFX

@@ -30,9 +30,10 @@ public class QuestManager : MonoBehaviour
         questsByScene.Add("Backup Scene 1", new List<Quest>
     {
         new Quest { questName = "Nhặt kim cương xanh", description = "Thu thập 5 kim cương xanh.", requiredItemCount = 5, currentItemCount = 0, isCompleted = false },
-        new Quest { questName = "Nhặt kim cương đỏ", description = "Thu thập 5 kim cương đỏ.", requiredItemCount = 5, currentItemCount = 0, isCompleted = false },
         new Quest { questName = "Nhặt lá thuốc", description = "Thu thập 1 lá thuốc.", requiredItemCount = 1, currentItemCount = 0, isCompleted = false },
-        new Quest { questName = "Nhặt bình thuốc", description = "Thu thập 3 bình thuốc.", requiredItemCount = 3, currentItemCount = 0, isCompleted = false }
+        new Quest { questName = "Nhặt bình thuốc", description = "Thu thập 3 bình thuốc.", requiredItemCount = 3, currentItemCount = 0, isCompleted = false },
+        new Quest { questName = "Nhặt đồng vàng", description = "Thu thập 3 đồng vàng.", requiredItemCount = 3, currentItemCount = 0, isCompleted = false },
+        new Quest { questName = "Nhặt ngôi sao", description = "Thu thập 3 ngôi sao.", requiredItemCount = 3, currentItemCount = 0, isCompleted = false }
     });
 
         questsByScene.Add("Backup Scene 2", new List<Quest>
@@ -137,6 +138,7 @@ public class QuestManager : MonoBehaviour
             victoryText.text = $"Nhiệm vụ hoàn thành! \n Chuyển cảnh sau {countdown} giây...";
             yield return new WaitForSeconds(1f);
             countdown--;
+            
         }
 
         string currentScene = SceneManager.GetActiveScene().name;
@@ -182,6 +184,7 @@ public class QuestManager : MonoBehaviour
             // Sử dụng <br> để tạo dòng mới giữa các nhiệm vụ
             questText.text += $"{quest.questName}: {quest.description}{status}<br><br>";
         }
+        
     }
 
 

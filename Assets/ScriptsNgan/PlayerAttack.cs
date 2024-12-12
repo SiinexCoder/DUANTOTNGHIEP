@@ -19,10 +19,21 @@ public class PlayerAttack : MonoBehaviour
 
     public bool isUsingBow = false; // Kiểm tra trạng thái vũ khí
     public Camera playerCamera; // Camera của người chơi
+    public AudioClip swordSwingSound; // Âm thanh vung kiếm
+    public AudioClip arrowShootSound; // Âm thanh bắn cung
+    private AudioSource audioSource;
+     private void Start()
+    {
+        if (audioSource == null)
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
+    }
 
     private void Update()
     {
         HandleAttack();
+         
     }
 
     private void HandleAttack()
@@ -51,7 +62,7 @@ public class PlayerAttack : MonoBehaviour
     }
 
     private void SwordAttack()
-    {
+    {   
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePosition.z = transform.position.z;
 
@@ -68,6 +79,15 @@ public class PlayerAttack : MonoBehaviour
             }
 
             Debug.Log($"Tấn công bằng kiếm tại {mousePosition}. Số quái bị trúng: {hitEnemies.Length}");
+        }
+        if (swordSwingSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(swordSwingSound);
+            Debug.Log("Âm thanh vung kiếm được phát!");
+        }
+        else
+        {
+            Debug.LogError("SwordSwingSound hoặc AudioSource không hợp lệ.");
         }
     }
 
@@ -97,6 +117,15 @@ public class PlayerAttack : MonoBehaviour
                 float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg; // Tính toán góc theo radian
                 arrow.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle)); // Áp dụng góc xoay vào mũi tên
             }
+        }
+        if (arrowShootSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(arrowShootSound);
+            Debug.Log("Âm thanh bắn cung được phát!");
+        }
+        else
+        {
+            Debug.LogError("ArrowShootSound hoặc AudioSource không hợp lệ.");
         }
     }
 }

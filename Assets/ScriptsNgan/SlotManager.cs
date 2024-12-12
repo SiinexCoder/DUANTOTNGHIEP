@@ -11,35 +11,38 @@ public class SlotManager : MonoBehaviour
 
     // Cập nhật slot với item và số lượng
     public void UpdateSlot(Item healingItem, int healingCount, Item speedItem, int speedCount)
+{
+    Debug.Log("Updating slots...");
+
+    // Healing item
+    if (healingItem != null && healingCount > 0)
     {
-        Debug.Log("Updating slots...");
-
-        // Kiểm tra nếu có healing item và cập nhật UI
-        if (healingItem != null && healingCount > 0)
-        {
-            healingItemSlot.SetActive(true);  // Hiển thị ô slot
-            healingItemCount.text = healingCount.ToString();  // Cập nhật số lượng
-            Debug.Log($"Healing item count: {healingCount}");
-        }
-        else
-        {
-            healingItemSlot.SetActive(false);  // Ẩn ô slot nếu không có item hoặc số lượng là 0
-            healingItemCount.text = "";  // Xóa số lượng khi không có item
-        }
-
-        // Kiểm tra nếu có speed potion và cập nhật UI
-        if (speedItem != null && speedCount > 0)
-        {
-            speedItemSlot.SetActive(true);  // Hiển thị ô slot
-            speedItemCount.text = speedCount.ToString();  // Cập nhật số lượng
-            Debug.Log($"Speed potion count: {speedCount}");
-        }
-        else
-        {
-            speedItemSlot.SetActive(false);  // Ẩn ô slot nếu không có item hoặc số lượng là 0
-            speedItemCount.text = "";  // Xóa số lượng khi không có item
-        }
+        healingItemSlot.SetActive(true);
+        healingItemCount.text = healingCount.ToString();
+        Debug.Log($"Healing item count: {healingCount}");
     }
+    else
+    {
+        healingItemSlot.SetActive(false); // Ẩn slot nếu không có item
+        healingItemCount.text = "";      // Đảm bảo không hiển thị số dư thừa
+        Debug.Log("Hiding healing slot.");
+    }
+
+    // Speed potion
+    if (speedItem != null && speedCount > 0)
+    {
+        speedItemSlot.SetActive(true);
+        speedItemCount.text = speedCount.ToString();
+        Debug.Log($"Speed potion count: {speedCount}");
+    }
+    else
+    {
+        speedItemSlot.SetActive(false); // Ẩn slot nếu không có item
+        speedItemCount.text = "";      // Xóa số lượng thừa
+        Debug.Log("Hiding speed potion slot.");
+    }
+}
+
 
 
 }

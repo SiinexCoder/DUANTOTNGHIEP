@@ -31,39 +31,55 @@ public class Inventory : MonoBehaviour
     }
 
     private void UpdateSlots()
-    {
-        // Tìm Healing Item và Speed Potion trong Inventory
-        ItemStack healingStack = items.Find(stack => stack.item is HealingItem);
-        ItemStack speedPotionStack = items.Find(stack => stack.item is SpeedPotion);
+{
+    // Tìm Healing Item và Speed Potion trong Inventory
+    ItemStack healingStack = items.Find(stack => stack.item is HealingItem);
+    ItemStack speedPotionStack = items.Find(stack => stack.item is SpeedPotion);
 
-        // Gửi dữ liệu đến SlotManager để cập nhật UI
-        slotManager.UpdateSlot(
-            healingStack?.item, healingStack?.quantity ?? 0,
-            speedPotionStack?.item, speedPotionStack?.quantity ?? 0
-        );
-    }
+    // Đảm bảo `null` khi không tìm thấy item
+    Item healingItem = healingStack?.item;
+    int healingCount = healingStack?.quantity ?? 0;
+
+    Item speedItem = speedPotionStack?.item;
+    int speedCount = speedPotionStack?.quantity ?? 0;
+
+    // Cập nhật UI thông qua SlotManager
+    slotManager.UpdateSlot(healingItem, healingCount, speedItem, speedCount);
+}
+
 
     public bool AddItem(Item item)
+{
+    foreach (ItemStack stack in items)
     {
-        foreach (ItemStack stack in items)
+        if (stack.item == item && stack.item.isStackable)
         {
-            if (stack.item == item && stack.item.isStackable)
-            {
-                stack.quantity += 1; // Tăng số lượng nếu có thể stack
-                UpdateSlots(); // Cập nhật UI
-                return true;
-            }
-        }
-
-        if (items.Count < maxSlots)
-        {
-            items.Add(new ItemStack(item, 1)); // Thêm item mới vào inventory
-            UpdateSlots(); // Cập nhật UI
+            stack.quantity += 1;
+            UpdateSlots(); // Cập nhật UI khi thêm item
             return true;
         }
-
-        return false;
     }
+
+    if (items.Count < maxSlots)
+    {
+        items.Add(new ItemStack(item, 1));
+        UpdateSlots(); // Cập nhật UI khi thêm item
+        return true;
+    }
+
+    Debug.LogWarning("Không đủ slot để thêm vật phẩm.");
+    return false;
+}
+
+public void RemoveItem(ItemStack stack)
+{
+    if (items.Contains(stack))
+    {
+        items.Remove(stack);
+        UpdateSlots(); // Cập nhật UI khi xóa item
+    }
+}
+
 
     public void UseHealingItem()
     {

@@ -182,6 +182,16 @@ public class PlayerController : MonoBehaviour
             Destroy(other.gameObject);
             questManager.UpdateQuestProgress("Nhặt thuốc giải", 1);
         }
+        if (other.CompareTag("Coin"))
+        {
+            Destroy(other.gameObject);
+            questManager.UpdateQuestProgress("Nhặt đồng vàng", 1);
+        }
+        if (other.CompareTag("Star"))
+        {
+            Destroy(other.gameObject);
+            questManager.UpdateQuestProgress("Nhặt ngôi sao", 1);
+        }
 
     }
     void OnTriggerExit2D(Collider2D other)
