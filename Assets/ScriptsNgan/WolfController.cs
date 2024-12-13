@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EnemyController : MonoBehaviour
+public class WolfController : MonoBehaviour
 {
     public float speed = 3f;       // Tốc độ di chuyển của quái vật
     public float chaseRange = 10f; // Khoảng cách mà quái vật bắt đầu đuổi theo
@@ -60,11 +60,11 @@ public class EnemyController : MonoBehaviour
     {
         if (direction.x > 0)
         {
-            transform.localScale = new Vector3(-6, 6, 6);  // Xoay sang phải
+            transform.localScale = new Vector3(-4, 4, 4);  // Xoay sang phải
         }
         else if (direction.x < 0)
         {
-            transform.localScale = new Vector3(6, 6, 6); // Xoay sang trái
+            transform.localScale = new Vector3(4, 4, 4); // Xoay sang trái
         }
     }
 

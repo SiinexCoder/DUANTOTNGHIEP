@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using Kinnly;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -20,6 +21,8 @@ public class PlayerHealth : MonoBehaviour
     public TMPro.TMP_Text DieText;
 
     private bool isDead = false;
+
+    public PlayerController player;
 
     private void Start()
     {   
@@ -84,10 +87,18 @@ public class PlayerHealth : MonoBehaviour
         healthBar.UpdateBar(currentHealth, maxHealth);
     }
 
-    public void Die() 
+  public void Die()
 {
     if (isDead) return;
     isDead = true;
+
+    // Tắt mọi hoạt động
+    animator.enabled = false; // Tắt animator để dừng animation
+    AudioSource[] audioSources = GetComponents<AudioSource>();
+    foreach (var audio in audioSources)
+    {
+        audio.Stop(); // Dừng tất cả âm thanh
+    }
 
     // Hiển thị bảng thông báo chết
     DiePanel.SetActive(true);
@@ -98,10 +109,12 @@ public class PlayerHealth : MonoBehaviour
 
     // Bắt đầu Coroutine chờ trước khi chuyển Scene
     StartCoroutine(LoadMenuAfterDelay(3f));
+    // Destroy(player.gameObject);
 }
 
 private IEnumerator LoadMenuAfterDelay(float delay)
 {
+    
     Debug.Log($"Chờ {delay} giây trước khi chuyển về Menu.");
     
     // Chờ sử dụng WaitForSecondsRealtime để không bị ảnh hưởng bởi Time.timeScale

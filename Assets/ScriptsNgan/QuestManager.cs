@@ -29,11 +29,11 @@ public class QuestManager : MonoBehaviour
         // Thêm các nhiệm vụ cho từng scene
         questsByScene.Add("Backup Scene 1", new List<Quest>
     {
-        new Quest { questName = "Nhặt kim cương xanh", description = "Thu thập 5 kim cương xanh.", requiredItemCount = 5, currentItemCount = 0, isCompleted = false },
-        new Quest { questName = "Nhặt lá thuốc", description = "Thu thập 1 lá thuốc.", requiredItemCount = 1, currentItemCount = 0, isCompleted = false },
-        new Quest { questName = "Nhặt bình thuốc", description = "Thu thập 3 bình thuốc.", requiredItemCount = 3, currentItemCount = 0, isCompleted = false },
-        new Quest { questName = "Nhặt đồng vàng", description = "Thu thập 3 đồng vàng.", requiredItemCount = 3, currentItemCount = 0, isCompleted = false },
-        new Quest { questName = "Nhặt ngôi sao", description = "Thu thập 3 ngôi sao.", requiredItemCount = 3, currentItemCount = 0, isCompleted = false }
+        new Quest { questName = "Nhặt kim cương xanh", description = "Thu thập 5 kim cương xanh.", requiredItemCount = 1, currentItemCount = 0, isCompleted = false },
+        // new Quest { questName = "Nhặt lá thuốc", description = "Thu thập 1 lá thuốc.", requiredItemCount = 1, currentItemCount = 0, isCompleted = false },
+        // new Quest { questName = "Nhặt bình thuốc", description = "Thu thập 3 bình thuốc.", requiredItemCount = 3, currentItemCount = 0, isCompleted = false },
+        // new Quest { questName = "Nhặt đồng vàng", description = "Thu thập 3 đồng vàng.", requiredItemCount = 3, currentItemCount = 0, isCompleted = false },
+        // new Quest { questName = "Nhặt ngôi sao", description = "Thu thập 3 ngôi sao.", requiredItemCount = 3, currentItemCount = 0, isCompleted = false }
     });
 
         questsByScene.Add("Backup Scene 2", new List<Quest>
