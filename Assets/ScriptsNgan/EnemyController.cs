@@ -13,7 +13,9 @@ public class EnemyController : MonoBehaviour
     private Renderer rend;         // Biến lưu Renderer để thay đổi màu sắc
     private Transform player;      // Biến lưu tham chiếu tới nhân vật
     private Animator animator;     // Tham chiếu đến Animator để điều khiển animation
-    public AudioSource hurtSound; // AudioSource chứa âm thanh bị thương
+    private AudioSource audioSource; // AudioSource chứa âm thanh bị thương
+
+    public AudioClip hurtSound;
 
 
     private void Start()
@@ -106,9 +108,9 @@ public class EnemyController : MonoBehaviour
     public void TakeDamage(float damage)
     {
         health -= damage; // Giảm máu
-        if (hurtSound != null)
+        if (audioSource != null && hurtSound != null)
         {
-            hurtSound.Play();
+            audioSource.PlayOneShot(hurtSound); // Phát âm thanh sát thương
         }
         // Đổi màu quái vật thành màu đỏ khi bị thương
         rend.material.color = Color.red;
