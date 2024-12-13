@@ -4102,7 +4102,7 @@ PrefabInstance:
     - target: {fileID: 1196475626121582544, guid: 34cdf1ef9dca0e44199913ed5c3f76b6, type: 3}
       propertyPath: inventoryUI
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 749293639}
     - target: {fileID: 2022892247597685853, guid: 34cdf1ef9dca0e44199913ed5c3f76b6, type: 3}
       propertyPath: m_Name
       value: Healing Item
@@ -5332,6 +5332,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0e6b040ea8073af4f891e48b1d9cbfac, type: 3}
+--- !u!114 &749293639 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3919073587508332976, guid: 0e6b040ea8073af4f891e48b1d9cbfac, type: 3}
+  m_PrefabInstance: {fileID: 749293638}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdf9f711b1284f545969216bb1298e29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &751825715 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9051603464931547550, guid: de15b7f009fd29048a4bf2c466f547cf, type: 3}
@@ -14060,7 +14071,7 @@ PrefabInstance:
     - target: {fileID: 8219055448512001290, guid: 8a49bcb7e516dd046ab318df867724a6, type: 3}
       propertyPath: inventoryUI
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 749293639}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

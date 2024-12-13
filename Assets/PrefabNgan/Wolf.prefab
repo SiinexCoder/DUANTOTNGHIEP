@@ -194,7 +194,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  chaseRange: 10
-  health: 100
+  chaseRange: 50
+  health: 10
   lootItems: []
   dropChance: 0.5

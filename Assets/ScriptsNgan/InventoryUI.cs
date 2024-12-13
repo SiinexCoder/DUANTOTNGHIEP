@@ -76,5 +76,3 @@ public class InventoryUI : MonoBehaviour
 
 
 }
-
-

@@ -13,97 +13,72 @@ public class Inventory : MonoBehaviour
 
     private void Update()
     {
+        // Cập nhật thời gian cooldown
         if (speedPotionCooldown > 0f)
         {
-            speedPotionCooldown -= Time.deltaTime;
+            speedPotionCooldown -= Time.deltaTime;  // Giảm thời gian cooldown mỗi frame
         }
 
+        // Kiểm tra phím bấm và cooldown trước khi sử dụng
         if (Input.GetKeyDown(KeyCode.Alpha1) && speedPotionCooldown <= 0f)
         {
-            UseHealingItem();
+            UseHealingItem();  // Sử dụng Speed Potion
         }
         if (Input.GetKeyDown(KeyCode.Alpha2) && speedPotionCooldown <= 0f)
         {
-            UseSpeedPotion();
+            UseSpeedPotion();  // Sử dụng Speed Potion
         }
-    }
-
-    // Phương thức lưu inventory vào PlayerPrefs
-    public void SaveInventory()
-    {
-        for (int i = 0; i < items.Count; i++)
-        {
-            PlayerPrefs.SetString("Item_" + i, items[i].item.name);
-            PlayerPrefs.SetInt("Quantity_" + i, items[i].quantity);
-        }
-        PlayerPrefs.Save();
-    }
-
-    // Phương thức tải inventory từ PlayerPrefs
-    public void LoadInventory()
-    {
-        items.Clear(); // Xóa dữ liệu cũ trong inventory
-
-        int i = 0;
-        while (PlayerPrefs.HasKey("Item_" + i))
-        {
-            string itemName = PlayerPrefs.GetString("Item_" + i);
-            int quantity = PlayerPrefs.GetInt("Quantity_" + i);
-
-            Item item = Resources.Load<Item>("Items/" + itemName); // Giả sử bạn lưu trữ item trong thư mục "Items"
-            if (item != null)
-            {
-                items.Add(new ItemStack(item, quantity));
-            }
-            i++;
-        }
-        UpdateSlots(); // Cập nhật lại UI sau khi tải inventory
     }
 
     private void UpdateSlots()
-    {
-        ItemStack healingStack = items.Find(stack => stack.item is HealingItem);
-        ItemStack speedPotionStack = items.Find(stack => stack.item is SpeedPotion);
+{
+    // Tìm Healing Item và Speed Potion trong Inventory
+    ItemStack healingStack = items.Find(stack => stack.item is HealingItem);
+    ItemStack speedPotionStack = items.Find(stack => stack.item is SpeedPotion);
 
-        Item healingItem = healingStack?.item;
-        int healingCount = healingStack?.quantity ?? 0;
+    // Đảm bảo `null` khi không tìm thấy item
+    Item healingItem = healingStack?.item;
+    int healingCount = healingStack?.quantity ?? 0;
 
-        Item speedItem = speedPotionStack?.item;
-        int speedCount = speedPotionStack?.quantity ?? 0;
+    Item speedItem = speedPotionStack?.item;
+    int speedCount = speedPotionStack?.quantity ?? 0;
 
-        slotManager.UpdateSlot(healingItem, healingCount, speedItem, speedCount);
-    }
+    // Cập nhật UI thông qua SlotManager
+    slotManager.UpdateSlot(healingItem, healingCount, speedItem, speedCount);
+}
+
+
     public bool AddItem(Item item)
+{
+    foreach (ItemStack stack in items)
     {
-        foreach (ItemStack stack in items)
+        if (stack.item == item && stack.item.isStackable)
         {
-            if (stack.item == item && stack.item.isStackable)
-            {
-                stack.quantity += 1;
-                UpdateSlots(); // Cập nhật UI khi thêm item
-                return true;
-            }
-        }
-
-        if (items.Count < maxSlots)
-        {
-            items.Add(new ItemStack(item, 1));
+            stack.quantity += 1;
             UpdateSlots(); // Cập nhật UI khi thêm item
             return true;
         }
-
-        Debug.LogWarning("Không đủ slot để thêm vật phẩm.");
-        return false;
     }
 
-    public void RemoveItem(ItemStack stack)
+    if (items.Count < maxSlots)
     {
-        if (items.Contains(stack))
-        {
-            items.Remove(stack);
-            UpdateSlots(); // Cập nhật UI khi xóa item
-        }
+        items.Add(new ItemStack(item, 1));
+        UpdateSlots(); // Cập nhật UI khi thêm item
+        return true;
     }
+
+    Debug.LogWarning("Không đủ slot để thêm vật phẩm.");
+    return false;
+}
+
+public void RemoveItem(ItemStack stack)
+{
+    if (items.Contains(stack))
+    {
+        items.Remove(stack);
+        UpdateSlots(); // Cập nhật UI khi xóa item
+    }
+}
 
 
     public void UseHealingItem()
@@ -159,7 +134,7 @@ public class Inventory : MonoBehaviour
             Debug.LogWarning("Không có vật phẩm tăng tốc trong inventory.");
             return;
         }
-
+    
         SpeedPotion speedPotion = speedPotionStack.item as SpeedPotion;
         PlayerController playerController = FindObjectOfType<PlayerController>();
         if (playerController != null)
@@ -196,5 +171,4 @@ public class Inventory : MonoBehaviour
     }
 
 }
-
 

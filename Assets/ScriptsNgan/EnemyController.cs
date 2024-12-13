@@ -13,6 +13,8 @@ public class EnemyController : MonoBehaviour
     private Renderer rend;         // Biến lưu Renderer để thay đổi màu sắc
     private Transform player;      // Biến lưu tham chiếu tới nhân vật
     private Animator animator;     // Tham chiếu đến Animator để điều khiển animation
+    public AudioSource hurtSound; // AudioSource chứa âm thanh bị thương
+
 
     private void Start()
     {
@@ -69,7 +71,7 @@ public class EnemyController : MonoBehaviour
     }
 
     // Hàm xử lý va chạm với các đối tượng có tag "Sword" hoặc "Arrow"
-    private void OnCollisionEnter2D(Collision2D collision)
+    public void OnCollisionEnter2D(Collision2D collision)
     {
         // Kiểm tra quái vật va chạm với vũ khí
         if (collision.gameObject.CompareTag("Sword") || collision.gameObject.CompareTag("Arrow"))
@@ -78,16 +80,16 @@ public class EnemyController : MonoBehaviour
         }
 
         if (collision.gameObject.CompareTag("Arrow"))
-    {
-        // Thêm lực đẩy lên quái vật khi va chạm với mũi tên
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        if (rb != null)
         {
-            Vector2 direction = (transform.position - collision.transform.position).normalized;
-            float pushForce = 1f; // Đoạn lực đẩy cho quái vật
-            rb.AddForce(direction * pushForce, ForceMode2D.Impulse);
+            // Thêm lực đẩy lên quái vật khi va chạm với mũi tên
+            Rigidbody2D rb = GetComponent<Rigidbody2D>();
+            if (rb != null)
+            {
+                Vector2 direction = (transform.position - collision.transform.position).normalized;
+                float pushForce = 1f; // Đoạn lực đẩy cho quái vật
+                rb.AddForce(direction * pushForce, ForceMode2D.Impulse);
+            }
         }
-    }
 
         // Kiểm tra quái vật va chạm với player
         if (collision.gameObject.CompareTag("Player"))
@@ -104,7 +106,10 @@ public class EnemyController : MonoBehaviour
     public void TakeDamage(float damage)
     {
         health -= damage; // Giảm máu
-
+        if (hurtSound != null)
+        {
+            hurtSound.Play();
+        }
         // Đổi màu quái vật thành màu đỏ khi bị thương
         rend.material.color = Color.red;
 
