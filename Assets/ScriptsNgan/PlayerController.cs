@@ -142,11 +142,6 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Treasure Chest"))
-        {
-            isNearTreasureChest = true;
-            nearbyTreasureChest = other.gameObject;  // Lưu đối tượng rương kho báu
-        }
         if (other.CompareTag("Diamond Blue"))
         {
             Destroy(other.gameObject);
@@ -157,25 +152,20 @@ public class PlayerController : MonoBehaviour
             Destroy(other.gameObject);
             questManager.UpdateQuestProgress("Nhặt kim cương đỏ", 1);
         }
-        if (other.CompareTag("Secret Item"))
-        {
-            Destroy(other.gameObject);
-            questManager.UpdateQuestProgress("Nhặt vật phẩm bí ẩn", 1);
-        }
         if (other.CompareTag("Leaf"))
         {
             Destroy(other.gameObject);
             questManager.UpdateQuestProgress("Nhặt lá thuốc", 1);
         }
-        if (other.CompareTag("Potion"))
+        if (other.CompareTag("SpeedPotion"))
         {
             Destroy(other.gameObject);
-            questManager.UpdateQuestProgress("Nhặt bình thuốc", 1);
+            questManager.UpdateQuestProgress("Nhặt thuốc tăng tốc", 1);
         }
-        if (other.CompareTag("Healing"))
+        if (other.CompareTag("HealingPotion"))
         {
             Destroy(other.gameObject);
-            questManager.UpdateQuestProgress("Nhặt thuốc hồi phục", 1);
+            questManager.UpdateQuestProgress("Nhặt thuốc hồi máu", 1);
         }
         if (other.CompareTag("Antidote"))
         {

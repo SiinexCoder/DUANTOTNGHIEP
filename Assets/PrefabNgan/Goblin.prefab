@@ -122,13 +122,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  chaseRange: 50
+  chaseRange: 10
   health: 10
   lootItems:
   - {fileID: 8179839782772653567, guid: 172d639d604ca0048a37324dc11ee37b, type: 3}
   - {fileID: 2681242785279950256, guid: 12a8da6b00b0ae549821b3d7b171e25a, type: 3}
-  - {fileID: 1377560905926513040, guid: 1470398639f70b54baa4cadd9e4aa941, type: 3}
-  dropChance: 0.5
+  - {fileID: 4462658858101218586, guid: 1f361c3f15611fe45a1f3d0933db91ea, type: 3}
+  - {fileID: 2228193971422941920, guid: cf2c258f3edde4f46957a23e51d85d5d, type: 3}
+  dropChance: 0.4
   hurtSound: {fileID: 0}
 --- !u!50 &269757549346789615
 Rigidbody2D:

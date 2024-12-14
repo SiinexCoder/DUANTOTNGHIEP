@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5009869481535134290}
   - component: {fileID: 6786750499100490244}
-  - component: {fileID: 8533991058957380978}
   - component: {fileID: 1442578240025796378}
   m_Layer: 0
   m_Name: Thuoc1
@@ -86,25 +85,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8533991058957380978
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5391577594383079743}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02189a08018c0864689adadfb005a9cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lootItems: []
-  dropDistance: 1
-  health: 1
-  damage: 1
-  damageSound: {fileID: 8300000, guid: 4d24975329921423b9c49a8807c8f508, type: 3}
-  deathSound: {fileID: 8300000, guid: 4d24975329921423b9c49a8807c8f508, type: 3}
-  damagedColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!61 &1442578240025796378
 BoxCollider2D:
   m_ObjectHideFlags: 0

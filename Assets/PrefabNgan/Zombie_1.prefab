@@ -136,7 +136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da7a6f5383b1b6a4aa1cb3c231cd1263, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 1
+  _speed: 3
   _rotationSpeed: 100
   _screenBorder: -30
   _obstacleCheckCircleRadius: 0.5
@@ -171,8 +171,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lootItems:
   - prefab: {fileID: 8179839782772653567, guid: 172d639d604ca0048a37324dc11ee37b, type: 3}
-    dropChance: 0.5
-  - prefab: {fileID: 5391577594383079743, guid: 3c310386300d14248a313a8e5b88b9d8, type: 3}
     dropChance: 0.5
   - prefab: {fileID: 2228193971422941920, guid: de011f9a3efde5648afa0e8b859c8cf6, type: 3}
     dropChance: 0.5

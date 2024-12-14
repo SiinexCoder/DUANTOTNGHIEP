@@ -4,9 +4,6 @@ public class ToggleQuest : MonoBehaviour
 {
     public GameObject questPanel; 
     public GameObject questText;   
-
-
-
     private bool isQuestVisible = false; 
 
     // Hàm bật/tắt giao diện balo

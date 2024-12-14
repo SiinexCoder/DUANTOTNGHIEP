@@ -29,32 +29,34 @@ public class QuestManager : MonoBehaviour
         // Thêm các nhiệm vụ cho từng scene
         questsByScene.Add("Backup Scene 1", new List<Quest>
     {
-        new Quest { questName = "Nhặt kim cương xanh", description = "Thu thập 5 kim cương xanh.", requiredItemCount = 5, currentItemCount = 0, isCompleted = false },
-        new Quest { questName = "Nhặt lá thuốc", description = "Thu thập 1 lá thuốc.", requiredItemCount = 1, currentItemCount = 0, isCompleted = false },
-        new Quest { questName = "Nhặt bình thuốc", description = "Thu thập 3 bình thuốc.", requiredItemCount = 3, currentItemCount = 0, isCompleted = false },
-        new Quest { questName = "Nhặt đồng vàng", description = "Thu thập 3 đồng vàng.", requiredItemCount = 3, currentItemCount = 0, isCompleted = false },
-        new Quest { questName = "Nhặt ngôi sao", description = "Thu thập 3 ngôi sao.", requiredItemCount = 3, currentItemCount = 0, isCompleted = false }
+        new Quest { questName = "Nhặt thuốc hồi máu", description = "Thu thập 1 thuốc hồi máu.", requiredItemCount = 1, currentItemCount = 0, isCompleted = false },
+        new Quest { questName = "Nhặt thuốc tăng tốc", description = "Thu thập 1 thuốc tăng tốc.", requiredItemCount = 1, currentItemCount = 0, isCompleted = false },
+        new Quest { questName = "Nhặt đồng vàng", description = "Thu thập 1 đồng vàng.", requiredItemCount = 1, currentItemCount = 0, isCompleted = false },
+        new Quest { questName = "Nhặt ngôi sao", description = "Thu thập 1 ngôi sao.", requiredItemCount = 1, currentItemCount = 0, isCompleted = false }
     });
 
         questsByScene.Add("Backup Scene 2", new List<Quest>
     {
-        new Quest { questName = "Nhặt vật phẩm bí ẩn", description = "Thu thập vật phẩm bí ẩn", requiredItemCount = 1, currentItemCount = 0, isCompleted = false },
-        // new Quest { questName = "Nhặt kim cương đỏ", description = "Thu thập 5 viên đá đỏ.", requiredItemCount = 5, currentItemCount = 0, isCompleted = false },
-        // new Quest { questName = "Nhặt lá thuốc", description = "Thu thập 1 lá thuốc", requiredItemCount = 1, currentItemCount = 0, isCompleted = false },
-        // new Quest { questName = "Nhặt thuốc hồi phục", description = "Thu thập 5 thuốc hồi phục", requiredItemCount = 5, currentItemCount = 0, isCompleted = false }
+        new Quest { questName = "Nhặt lá thuốc", description = "Thu thập 1 lá thuốc", requiredItemCount = 1, currentItemCount = 0, isCompleted = false },
+        new Quest { questName = "Nhặt thuốc hồi máu", description = "Thu thập 1 thuốc hồi máu.", requiredItemCount = 1, currentItemCount = 0, isCompleted = false },
+        new Quest { questName = "Nhặt thuốc tăng tốc", description = "Thu thập 1 thuốc tăng tốc.", requiredItemCount = 1, currentItemCount = 0, isCompleted = false },
+        new Quest { questName = "Nhặt đồng vàng", description = "Thu thập 2 đồng vàng.", requiredItemCount = 2, currentItemCount = 0, isCompleted = false },
+        new Quest { questName = "Nhặt ngôi sao", description = "Thu thập 2 ngôi sao.", requiredItemCount = 2, currentItemCount = 0, isCompleted = false }
     });
 
         questsByScene.Add("Backup Scene 3", new List<Quest>
     {
-        new Quest { questName = "Tìm kiếm kho báu", description = "Tìm kiếm kho báu", requiredItemCount = 1, currentItemCount = 0, isCompleted = false },
-        // new Quest { questName = "Giết quái vật", description = "Giết 30 quái vật", requiredItemCount = 30, currentItemCount = 0, isCompleted = false },
-        // new Quest { questName = "Thu thập vũ khí", description = "Thu thập thanh kiếm đặc biệt", requiredItemCount = 1, currentItemCount = 0, isCompleted = false },
-        // new Quest { questName = "Cứu dân làng", description = "Cứu 10 dân làng", requiredItemCount = 10, currentItemCount = 0, isCompleted = false }
+        new Quest { questName = "Nhặt thuốc hồi máu", description = "Thu thập 1 thuốc hồi máu.", requiredItemCount = 1, currentItemCount = 0, isCompleted = false },
+        new Quest { questName = "Nhặt thuốc tăng tốc", description = "Thu thập 1 thuốc tăng tốc.", requiredItemCount = 1, currentItemCount = 0, isCompleted = false },
+        new Quest { questName = "Nhặt kim cương xanh", description = "Thu thập 1 kim cương xanh.", requiredItemCount = 3, currentItemCount = 0, isCompleted = false },
+        new Quest { questName = "Nhặt ngôi sao", description = "Thu thập 3 ngôi sao.", requiredItemCount = 3, currentItemCount = 0, isCompleted = false }
     });
 
         questsByScene.Add("Backup Scene 4", new List<Quest>
     {
-        new Quest { questName = "Nhặt kim cương xanh", description = "Thu thập 5 kim cương xanh.", requiredItemCount = 1, currentItemCount = 0, isCompleted = false },
+        new Quest { questName = "Nhặt thuốc hồi máu", description = "Thu thập 3 thuốc hồi máu.", requiredItemCount = 3, currentItemCount = 0, isCompleted = false },
+        new Quest { questName = "Nhặt thuốc tăng tốc", description = "Thu thập 2 thuốc tăng tốc.", requiredItemCount = 2, currentItemCount = 0, isCompleted = false },
+        new Quest { questName = "Nhặt kim cương đỏ", description = "Thu thập 3 kim cương đỏ.", requiredItemCount = 3, currentItemCount = 0, isCompleted = false }
     });
         questsByScene.Add("Boss", new List<Quest>
     {
@@ -182,7 +184,7 @@ public class QuestManager : MonoBehaviour
         {
             string status = quest.isCompleted ? " (Đã hoàn thành)" : $" ({quest.currentItemCount}/{quest.requiredItemCount})";
             // Sử dụng <br> để tạo dòng mới giữa các nhiệm vụ
-            questText.text += $"{quest.questName}: {quest.description}{status}<br><br>";
+            questText.text += $"{quest.questName}: {quest.description}{status}<br>";
         }
         
     }

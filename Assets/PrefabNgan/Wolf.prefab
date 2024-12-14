@@ -193,8 +193,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad8eaf27e2d361846b1614218086371b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
-  chaseRange: 50
-  health: 10
-  lootItems: []
-  dropChance: 0.5
+  speed: 3
+  chaseRange: 10
+  health: 20
+  lootItems:
+  - {fileID: 2228193971422941920, guid: cf2c258f3edde4f46957a23e51d85d5d, type: 3}
+  - {fileID: 4462658858101218586, guid: 1f361c3f15611fe45a1f3d0933db91ea, type: 3}
+  - {fileID: 2681242785279950256, guid: 12a8da6b00b0ae549821b3d7b171e25a, type: 3}
+  - {fileID: 8179839782772653567, guid: 172d639d604ca0048a37324dc11ee37b, type: 3}
+  dropChance: 0.4

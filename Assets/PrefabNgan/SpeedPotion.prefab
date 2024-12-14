@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8219055448512001290}
   m_Layer: 0
   m_Name: SpeedPotion
-  m_TagString: Potion
+  m_TagString: SpeedPotion
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

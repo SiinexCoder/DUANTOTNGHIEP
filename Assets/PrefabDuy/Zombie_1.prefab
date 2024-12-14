@@ -172,8 +172,6 @@ MonoBehaviour:
   lootItems:
   - prefab: {fileID: 8179839782772653567, guid: 172d639d604ca0048a37324dc11ee37b, type: 3}
     dropChance: 0.25
-  - prefab: {fileID: 6218340582976903062, guid: 3c9e16491e8550b4880c79f27b4586f8, type: 3}
-    dropChance: 0.25
   - prefab: {fileID: 2228193971422941920, guid: cf2c258f3edde4f46957a23e51d85d5d, type: 3}
     dropChance: 0.25
   - prefab: {fileID: 4462658858101218586, guid: 1f361c3f15611fe45a1f3d0933db91ea, type: 3}

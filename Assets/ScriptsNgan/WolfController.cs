@@ -95,7 +95,7 @@ public class WolfController : MonoBehaviour
             PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
             if (playerHealth != null)
             {
-                playerHealth.TakeDamage(10); // Gây sát thương cho player (10 sát thương)
+                playerHealth.TakeDamage(5); // Gây sát thương cho player (10 sát thương)
             }
         }
     }
