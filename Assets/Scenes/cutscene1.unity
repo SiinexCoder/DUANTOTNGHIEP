@@ -290,7 +290,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "N\u0102M 4756 H\u1EACU T\u1EACN TH\u1EBE B\u1EA0N L\xC0 NG\u01AF\u1EDCI
-    S\u1ED0NG S\xD3T CU\u1ED0I C\xD9NG "
+    S\u1ED0NG S\xD3T CU\u1ED0I C\xD9NG."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
